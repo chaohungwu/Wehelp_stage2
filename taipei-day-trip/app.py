@@ -78,10 +78,7 @@ def attractions(page:str, keyword:str=None):
 			#景點資料
 			results['data'] = rows
 
-			return{"reslut": results}		
-
-
-
+			return results
 
 		#沒輸入keyword
 		else:
@@ -129,7 +126,7 @@ def attractions(page:str, keyword:str=None):
 			#景點資料
 			results['data'] = rows
 
-			return{"reslut": results}
+			return results
 	except:
 		raise HTTPException(status_code=500, detail={"error":True, "message":"伺服器內部錯誤"})
 
@@ -172,7 +169,7 @@ def attractions_id(attractionId:Annotated[int ,None]):
 		if db_results == []:
 			raise HTTPException(status_code=400, detail={"error":True, "message":"景點編號不正確"})
 		else:
-			return{"reslut": results}
+			return results
 	
 
 	except:
