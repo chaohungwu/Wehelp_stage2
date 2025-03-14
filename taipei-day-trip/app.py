@@ -181,9 +181,33 @@ def attractions_id(attractionId:Annotated[int ,None]):
 		else:
 			raise HTTPException(status_code=500, detail={"error":True, "message":"伺服器內部錯誤"})
 
+#取得捷運站站點資訊
+@app.get("/api/mrts")
+def get_mrt_info():
+	try:
+		#連到資料庫連接池，查資料
+		connection = pool.get_connection()
+		cursor = connection.cursor()
 
+		# sql = "SELECT COUNT(MRT) MRT FROM taipei_attractions ;" #找所有景點的MRT
+		# sql = "SELECT DISTINCT MRT FROM taipei_attractions"
+		sql = "select MRT,count(*) as count from taipei_attractions group by MRT order by count desc;"
+		cursor.execute(sql,)
+		db_results = cursor.fetchall()
+		cursor.close()
+		connection.close() # return connection to the pool.
 
+		all_att_mrt_name_list=[]
+		for mrt in db_results:
+			if mrt[0] ==None:
+				pass
+			else:
+				all_att_mrt_name_list.append(mrt[0])
 
+		return {"data":all_att_mrt_name_list}
+
+	except:
+		raise HTTPException(status_code=500, detail={"error":True, "message":"伺服器內部錯誤"})
 
 
 
