@@ -34,8 +34,11 @@ def attractions(page:str, keyword:str=None):
 			connection = pool.get_connection()
 			cursor = connection.cursor()
 
-			keyword = "%"+keyword+"%"
-			print(keyword)
+			keyword2 = "%"+keyword+"%"
+
+			# print(keyword)
+			# print(keyword2)
+
 			db_count_sql = "SELECT COUNT(*) FROM taipei_attractions WHERE name LIKE %s;"
 			cursor.execute(db_count_sql,(keyword,))#依據頁數查詢資料
 			db_count = cursor.fetchall()
@@ -45,12 +48,11 @@ def attractions(page:str, keyword:str=None):
 
 			connection = pool.get_connection()
 			cursor = connection.cursor()
-			sql = "SELECT id ,name, CAT, description, address, direction, MRT, latitude, longitude, file FROM taipei_attractions WHERE name LIKE %s Limit %s,%s ;" #從第幾筆到第幾筆
-			cursor.execute(sql,(keyword,(int(page))*12, 12,))#依據頁數查詢資料
+			sql = "SELECT id ,name, CAT, description, address, direction, MRT, latitude, longitude, file FROM taipei_attractions WHERE MRT = %s OR name LIKE %s Limit %s,%s ;" #從第幾筆到第幾筆
+			cursor.execute(sql,(keyword, keyword2,(int(page))*12, 12,))#依據頁數查詢資料
 			db_results = cursor.fetchall()
 			cursor.close()
 			connection.close() # return connection to the pool.
-
 
 			# 將查出的資訊轉成json格式
 			rows = []
