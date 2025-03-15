@@ -27,24 +27,20 @@ def attractions(page:str, keyword:str=None):
 	page 要取得的分頁，每頁 12 筆資料(最小值0，必填欄位)
 	keyword 用來完全比對捷運站名稱、或模糊比對景點名稱的關鍵字，沒有給定則不做篩選
 	"""
+	
 	try:
-		#有輸入keyword
+		#如果有輸入keyword
 		if keyword!= None:
 			#連到資料庫連接池，查資料
 			connection = pool.get_connection()
 			cursor = connection.cursor()
-
 			keyword2 = "%"+keyword+"%"
-
-			# print(keyword)
-			# print(keyword2)
-
-			db_count_sql = "SELECT COUNT(*) FROM taipei_attractions WHERE name LIKE %s;"
-			cursor.execute(db_count_sql,(keyword,))#依據頁數查詢資料
+			#查符合的資料有幾筆
+			db_count_sql = "SELECT COUNT(*) FROM taipei_attractions WHERE MRT = %s OR name LIKE %s;"
+			cursor.execute(db_count_sql,(keyword, keyword2,))#依據頁數查詢資料
 			db_count = cursor.fetchall()
 			cursor.close()
 			connection.close() # return connection to the pool.
-			# print(db_count[0][0])
 
 			connection = pool.get_connection()
 			cursor = connection.cursor()
@@ -54,36 +50,67 @@ def attractions(page:str, keyword:str=None):
 			cursor.close()
 			connection.close() # return connection to the pool.
 
-			# 將查出的資訊轉成json格式
-			rows = []
-			results = {}
-			for rs in db_results:
-				row = {}
-				row["id"] = rs[0]
-				row["name"] = rs[1]
-				row["category"] = rs[2]
-				row["description"] = rs[3]
-				row["address"] = rs[4]
-				row["transport"] = rs[5]
-				row["mrt"] = rs[6]
-				row["lat"] = rs[7]
-				row["lng"] = rs[8]
-				if rs[9].find(",") ==-1:
-					row["images"] = rs[9]
-				else:
-					row["images"] = rs[9][:rs[9].find(",")]#只回傳第一個圖片網址
-				rows.append(row)
 
-			#看有沒有下一頁
-			# print(db_count)
-			if db_count[0][0] - (int(page)*12)>0:
-				results['nextPage'] = 1
+			if db_results==[]:
+				results = {}
+				results['nextPage'] = None
+				results['data'] = db_results
+				return results
 			else:
-				results['nextPage'] = 0
-			#景點資料
-			results['data'] = rows
+				# 將查出的資訊轉成json格式
+				rows = []
+				results = {}
+				for rs in db_results:
+					row = {}
+					row["id"] = rs[0]
+					row["name"] = rs[1]
+					row["category"] = rs[2]
+					row["description"] = rs[3]
+					row["address"] = rs[4]
+					row["transport"] = rs[5]
+					row["mrt"] = rs[6]
+					row["lat"] = rs[7]
+					row["lng"] = rs[8]
+					img_url_list =[] #圖片list
 
-			return results
+					if rs[9].find(",") == -1:#只有一張圖片的時候
+						img_url_list.append(rs[9])
+
+					else:#有多張圖片的時候
+
+						i2 = 1
+						tp_att_url = rs[9] #景點圖片url
+						last_index = 0
+
+						while tp_att_url.find(",",i2) != -1: #loop直到找不到http
+							if i2 ==1 :
+								img_url_list.append(tp_att_url[:tp_att_url.find(",",i2)])
+								last_index = tp_att_url.find(",",i2)
+								i2 = tp_att_url.find(",",last_index+1)
+							else:
+								img_url_list.append(tp_att_url[last_index:tp_att_url.find(",",i2)])
+								last_index = tp_att_url.find(",",i2)
+								i2 = tp_att_url.find(",",last_index+1)
+
+								if tp_att_url.find(",",i2) == -1:
+									img_url_list.append(tp_att_url[last_index:])
+								else:
+									pass
+					row["images"] = img_url_list #回傳所有網址
+
+
+					rows.append(row)
+
+				#看有沒有下一頁
+				if int(db_count[0][0]) - ((int(page)+1)*12)>0:
+					results['nextPage'] = int(page)+1
+				else:
+					results['nextPage'] = None
+				#景點資料
+				results['data'] = rows
+
+				return results
+
 
 		#沒輸入keyword
 		else:
@@ -95,7 +122,6 @@ def attractions(page:str, keyword:str=None):
 			db_count = cursor.fetchall()
 			cursor.close()
 			connection.close() # return connection to the pool.
-			# print(db_count[0][0])
 
 			connection = pool.get_connection()
 			cursor = connection.cursor()
@@ -119,15 +145,40 @@ def attractions(page:str, keyword:str=None):
 				row["mrt"] = rs[6]
 				row["lat"] = rs[7]
 				row["lng"] = rs[8]
-				row["images"] = rs[9][:rs[9].find(",")]#只回傳第一個圖片網址
+				img_url_list =[] #圖片list
+
+				if rs[9].find(",") == -1:#只有一張圖片的時候
+					img_url_list.append(rs[9])
+
+				else:#有多張圖片的時候
+
+					i2 = 1
+					tp_att_url = rs[9] #景點圖片url
+					last_index = 0
+
+					while tp_att_url.find(",",i2) != -1: #loop直到找不到http
+						if i2 ==1 :
+							img_url_list.append(tp_att_url[:tp_att_url.find(",",i2)])
+							last_index = tp_att_url.find(",",i2)
+							i2 = tp_att_url.find(",",last_index+1)
+						else:
+							img_url_list.append(tp_att_url[last_index:tp_att_url.find(",",i2)])
+							last_index = tp_att_url.find(",",i2)
+							i2 = tp_att_url.find(",",last_index+1)
+
+							if tp_att_url.find(",",i2) == -1:
+								img_url_list.append(tp_att_url[last_index:])
+							else:
+								pass
+				row["images"] = img_url_list #回傳所有網址
 				rows.append(row)
 
 			#看有沒有下一頁
 			# print(db_count)
-			if db_count[0][0] - (int(page)*12)>0:
-				results['nextPage'] = 1
+			if db_count[0][0] - ((int(page)+1)*12)>0:
+				results['nextPage'] = int(page)+1
 			else:
-				results['nextPage'] = 0
+				results['nextPage'] = None
 			#景點資料
 			results['data'] = rows
 
@@ -149,7 +200,6 @@ def attractions_id(attractionId:Annotated[int ,None]):
 		db_results = cursor.fetchall()
 		cursor.close()
 		connection.close() # return connection to the pool.
-		print(db_results)
 
 		# 將查出的資訊轉成json格式
 		rows = []
@@ -165,11 +215,37 @@ def attractions_id(attractionId:Annotated[int ,None]):
 			row["mrt"] = rs[6]
 			row["lat"] = rs[7]
 			row["lng"] = rs[8]
-			row["images"] = rs[9][:rs[9].find(",")]#只回傳第一個圖片網址
-			rows.append(row)
+			img_url_list =[] #圖片list
+			print(rs[9].find(","))
+
+			if rs[9].find(",") == -1:#只有一張圖片的時候
+				img_url_list.append(rs[9])
+
+			else:#有多張圖片的時候
+
+				i2 = 1
+				tp_att_url = rs[9] #景點圖片url
+				last_index = 0
+
+				while tp_att_url.find(",",i2) != -1: #loop直到找不到http
+					if i2 ==1 :
+						img_url_list.append(tp_att_url[:tp_att_url.find(",",i2)])
+						last_index = tp_att_url.find(",",i2)
+						i2 = tp_att_url.find(",",last_index+1)
+					else:
+						img_url_list.append(tp_att_url[last_index:tp_att_url.find(",",i2)])
+						last_index = tp_att_url.find(",",i2)
+						i2 = tp_att_url.find(",",last_index+1)
+
+						if tp_att_url.find(",",i2) == -1:
+							img_url_list.append(tp_att_url[last_index:])
+						else:
+							pass
+			row["images"] = img_url_list #回傳所有網址
+			# rows.append(row)
 
 		#景點資料
-		results['data'] = rows
+		results['data'] = row
 
 		if db_results == []:
 			raise HTTPException(status_code=400, detail={"error":True, "message":"景點編號不正確"})
