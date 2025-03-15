@@ -68,7 +68,10 @@ def attractions(page:str, keyword:str=None):
 				row["mrt"] = rs[6]
 				row["lat"] = rs[7]
 				row["lng"] = rs[8]
-				row["images"] = rs[9][:rs[9].find(",")]#只回傳第一個圖片網址
+				if rs[9].find(",") ==-1:
+					row["images"] = rs[9]
+				else:
+					row["images"] = rs[9][:rs[9].find(",")]#只回傳第一個圖片網址
 				rows.append(row)
 
 			#看有沒有下一頁
@@ -134,7 +137,7 @@ def attractions(page:str, keyword:str=None):
 
 
 
-@app.get("/api/attractions/{attractionId}")
+@app.get("/api/attraction/{attractionId}")
 def attractions_id(attractionId:Annotated[int ,None]):
 	try:
 		#連到資料庫連接池，查資料
