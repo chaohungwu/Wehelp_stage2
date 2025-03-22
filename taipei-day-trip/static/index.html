@@ -6,7 +6,7 @@
   <title>台北一日遊</title>
 
   <!-- 部屬用 -->
-  <link rel="stylesheet" type="text/css" href="taipei_attrraction_webside.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
 
   <!-- 本地用 -->
   <!-- <link rel="stylesheet" type="text/css" href="taipei_attrraction_webside.css"> -->
@@ -161,7 +161,7 @@
 
                 let mrt_item_Width = document.getElementById(`mrt_${i}`).clientWidth;
                 mrt_width_list.push(mrt_item_Width);
-                console.log(mrt_item_Width)
+                // console.log(mrt_item_Width)
               }
 
             });
@@ -177,8 +177,8 @@
           }).then(function(data){
             let att_data = data['data'];
             
-            console.log(att_data[0])
-            console.log(data['nextPage'])
+            // console.log(att_data[0])
+            // console.log(data['nextPage'])
 
             // 展出所有的景點卡片
             for(let i=0;i< att_data.length; i++){
