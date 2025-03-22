@@ -292,7 +292,7 @@ def get_mrt_info():
 
 
 # Static Pages (Never Modify Code in this Block)以下是靜態文件
-app.mount("/", StaticFiles(directory="static" ,html=True))#所有靜態文件資料夾
+app.mount("/", StaticFiles(directory="./static" ,html=True))#所有靜態文件資料夾
 
 
 @app.get("/", include_in_schema=False)
