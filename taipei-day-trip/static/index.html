@@ -68,12 +68,10 @@
   get_attraction_data(page="0",keyword="")
   get_mrt_data()
 
-
   // 點擊捷運列表右邊按鈕
   function att_search_but_click(){
     //取得輸入框資訊
     search_text = document.querySelector("#search_input").value
-    console.log(search_text)
 
     // 先清空現有的景點
     let web_att_card = document.querySelectorAll('.attraction_area_box');
@@ -83,12 +81,10 @@
 
     page_refresh()
     keyword_update()
-    get_attraction_data(now_page,keyword2)
-  }
-
+    get_attraction_data(now_page,search_text)
+    }
   
   let right_but_maxclick_times=0
-  let mrt_width_list =[]
   now_move_width = 0
   // 捷運list_bar_but點擊
   // 設定最大最小的position寬度
@@ -131,7 +127,6 @@
     };
   };
 
-
   // 呼叫捷運API回傳捷運訊息
   async function get_mrt_data(){
     fetch(`/api/mrts`).then(function(response){
@@ -160,15 +155,13 @@
                 });
 
                 let mrt_item_Width = document.getElementById(`mrt_${i}`).clientWidth;
-                mrt_width_list.push(mrt_item_Width);
-                // console.log(mrt_item_Width)
               }
-
             });
-
       };
 
-
+  let now_page; //當前頁數
+  let next_page; //下一頁的頁數
+  
   // 呼叫景點API回傳景點訊息
   async function get_attraction_data(page,keyword){
     fetch(`/api/attractions?page=${page}&keyword=${keyword}`).then(function(response){
@@ -176,13 +169,10 @@
           return response.json();
           }).then(function(data){
             let att_data = data['data'];
-            
-            // console.log(att_data[0])
-            // console.log(data['nextPage'])
+            next_page = data['nextPage']
 
             // 展出所有的景點卡片
             for(let i=0;i< att_data.length; i++){
-              // console.log(att_data[i]['name']);
               att_id = att_data[i]['id']
               let attraction_box_dom = document.createElement("div");
               attraction_box_dom.className = "attraction_area_box";
@@ -202,7 +192,6 @@
               attraction_img_dom.id = `att_img_${att_id}`;
               attraction_img_dom.style.backgroundImage=`url("${att_url}")`
               attraction_img_dom.style.backgroundSize=`cover`
-
               document.querySelector(`#att_card_${att_id}`).appendChild(attraction_img_dom);;
 
               // 景點名稱框
@@ -264,19 +253,20 @@ function throttle(func, delay) {
   };
 }
 
-let now_page = 0 //當前頁數
-let keyword2 = ""
-let nextPage_list = []
-let have_page=[0]
+let keyword2 = "";
+let nextPage_list = [];
+let have_page =[0];
 
 //將現有頁面變數更新
-function next_page(){
+function next_page_fun(){
   now_page += 1
 };
 
 //將現有頁面變數重製
 function page_refresh(){
-  now_page =0
+  now_page = 0;
+  have_page =[];
+  have_page.push(0);
 };
 
 //關鍵字更新
@@ -286,49 +276,25 @@ function keyword_update(){
 
 //載入下一頁景點的卡片
 async function show_attraction_card(now_page, keyword2) {
-  fetch(`/api/attractions?page=${now_page}&keyword=${keyword2}`).then(function(response){
-          return response.json();
-          }).then(function(data){
-            
-            console.log(`現在頁面：${now_page}`)
 
-            //下一頁的資訊
-            let nextPage = data['nextPage'];
-            console.log(nextPage)
-            nextPage_list.push(nextPage)
+      if(next_page==null){
+      // console.log("到底了")
 
-            if(nextPage==null){
-            console.log("到底了")
+      }else if(next_page in have_page){
+        // console.log("重複")
 
-            }else if(nextPage in have_page){
-              console.log("重複")
-
-            }else{
-              get_attraction_data(page = nextPage,keyword=keyword2)
-
-              next_page()
-              have_page.push(now_page)
-              console.log("josauopdja")
-              console.log(now_page)
-            };
-          }
-          )
-}
-
+      }else{
+        get_attraction_data(page = next_page,keyword=keyword2)
+        have_page.push(next_page)
+        next_page_fun()
+      };
+  }
 
 let debouncedMyFunction = debounce(show_attraction_card, 500);
 let throttleMyFunction = throttle(show_attraction_card, 500);
 // let buffer = 20; // 設定滾動的緩衝區為 20 px，滾動到下面底之前20px就會啟動
 
-
-
 // observer方法監聽滾動
-
-
-
-
-
-// const list = document.querySelector("ul");
 const obj = document.querySelector('#space');
 const opition = {
     root: null,
@@ -346,20 +312,6 @@ let observer = new IntersectionObserver((entries) => {
 
 // 監聽 obj
 observer.observe(obj);
-
-
-
-
-
-
-// //建立監聽滾動的事件(直接載入的時候就執行)
-// window.addEventListener('scroll', function() {
-//   if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
-
-//     throttleMyFunction(now_page, keyword2);
-//       };
-//     });
-
 
 
 
