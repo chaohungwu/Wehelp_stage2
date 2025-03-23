@@ -27,7 +27,6 @@
     /* width: 100%; */
     justify-content: start;
     flex-wrap: nowrap;
-
 }
 
 .Navigation_Bar__LeftText{
@@ -59,7 +58,7 @@
 
 .Hero_selction{
     height: 350px;
-    width: auto;
+    width: 100%;
 }
 .Hero_selction__img{
     display: flex;
@@ -68,21 +67,28 @@
     background-size:cover;
     background-repeat:no-repeat;
     width: 100%;
-    justify-content: center; 
+    justify-content: center;
     /* padding-left: 10%; */
 }
 
 .slogan{
     display: flex;
     height: 170px;
-    width: 62.5%;
+    width: 1200px;
+    max-width: 1200px;
+    min-width: 360px;
+    /* width: 62.5%; */
     align-self: center;
     flex-direction: column;
     gap: 25px;
     white-space: nowrap;
+    justify-content: start;
+    /* justify-items: start; */
 }
 
+
 .slogan_title{
+    max-width: 1200px;
     font-size: 28px;
     font-weight: bold;
     color: rgb(255, 255, 255);
@@ -90,6 +96,7 @@
 }
 
 .slogan_content{
+    max-width: 1200px;
     font-size: 18px;
     font-weight: bold;
     color: rgb(255, 255, 255);
@@ -139,7 +146,8 @@
 }
 
 .space{
-    width:100%;
+    max-width:1200px;
+    min-width: 360px;
     display:flex;
     align-items: center;
     justify-content: center;
@@ -165,17 +173,17 @@
     background-repeat:no-repeat;
     background-position: center;
     border: none;
-    /* justify-content: space-between; */
 }
 
 .list_bar_contant{
     display:flex;
     height: 70px;
-    width: 60%;
+    width: 100%;
     align-items: center;
     flex-wrap: nowrap;
     /* margin-right: 100px; */
     justify-content: center;
+    overflow:hidden;
 
 }
 
@@ -187,14 +195,10 @@
     margin-left: 10px;
     margin-right: 10px;
     overflow:hidden;
-    /* overflow-x: scroll; */
-    /* align-items: center; */
     justify-content: start;
-    gap:10px;
+    gap:20px;
     flex-wrap: nowrap;
     overflow-x: scroll;
-    /* translate:10px; */
-    /* overflow-x: hidden; */
 }
 .list_bar_inner_content::-webkit-scrollbar {
     display: none
@@ -222,32 +226,37 @@
 
 .attraction_area_content{
     min-width: 360px;
-    max-width: 1200px;
+    max-width: 1240px;
     height: auto;
     background-color: rgb(255, 255, 255);
     display: flex;
     justify-self: center;
     flex-grow: 1;
     flex-wrap: wrap;
-    justify-content: center;
+
 }
 
 .attraction_area_box{
-    width: 300px;
+    display: flex;
+    width:auto;
     height: 265px;
     align-content: center;
-    justify-content: start;
+    padding-right: 20;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    justify-content: center;
 }
 
 .attraction_area_box_item{
     display: flex;
-    width: 292.5px;
+    width: 260px;
     height: auto;
     justify-self:center;
     align-items: end;
     flex-direction: column;
     box-shadow:  0.5px 0.5px 3px rgb(205, 205, 205);
     border-radius:5px 5px 5px 5px;
+    
 }
 
 .attraction_area_box_item_img{
@@ -283,10 +292,7 @@
     align-items: center;
     /* border: 1px; */
     border-radius:0 0 5px 5px;
-
     background-color:white;
-
-
 }
 
 .attraction_area_box_item_text_box_name_mrt{
