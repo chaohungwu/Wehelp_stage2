@@ -212,7 +212,6 @@
     color: gray;
     font-weight: bold;
     /* margin-left: 30px */
-
     /* 這邊做移動 */
     position: relative;
     /* left: 30px; */
@@ -220,28 +219,29 @@
 }
 
 .attraction_area{
+    display: flex;
     width: 100%;
+    justify-content: center;
+
 }
 
-
 .attraction_area_content{
+    display: flex;
     min-width: 360px;
     max-width: 1240px;
     height: auto;
     background-color: rgb(255, 255, 255);
-    display: flex;
-    justify-self: center;
-    flex-grow: 1;
+    /* flex-grow: 1; */
     flex-wrap: wrap;
+    /* justify-content:start; */
 
 }
 
 .attraction_area_box{
     display: flex;
-    width:auto;
+    width:300px;
     height: 265px;
     align-content: center;
-    padding-right: 20;
     flex-wrap: wrap;
     flex-grow: 1;
     justify-content: center;
