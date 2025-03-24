@@ -3,9 +3,331 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Index</title>
+  <title>台北一日遊</title>
+
+  <!-- 部屬用 -->
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+  <!-- 本地用 -->
+  <!-- <link rel="stylesheet" type="text/css" href="taipei_attrraction_webside.css"> -->
+
 </head>
-<body>
+
+<body class="body">
+<div class="Navigation">
+  <div class="Navigation_Bar">
+    <div class="Navigation_Bar Navigation_Bar__LeftText Navigation_Bar__LeftText--color">台北一日遊</div>
+    <div class="Navigation_BarRigh">
+      <span class="Navigation_Bar__RightText Navigation_Bar__RightText--color" >預定行程</span>
+      <span class="Navigation_Bar__RightText Navigation_Bar__RightText--color" >登入/註冊</span>
+    </div>
+  </div>
+</div>
+<div style="height: 45px;"></div>
+
+
+<div class="Hero_selction"> 
+    <div class="Hero_selction Hero_selction__img" >
+      <div class="slogan">
+        <div class="slogan_title">輕鬆享受台北的一日悠閒</div>
+        <div class="slogan_content">探索每個角落，體驗城市的深度旅遊行程</div>
+        <div class="search_area">
+          <input class="search_input" id="search_input" type="text" name="search_input" placeholder="請輸入景點名稱查詢"/>
+          <button class="search_but" onclick="att_search_but_click()"></button>
+        </div>
+    </div>
+</div>
+
+<div class="list_bar">
+  <div class="space">
+    <button class="list_bar_left_but" onclick="list_bar_left_but_click()"></button>
+      <div class="list_bar_contant">
+           <div class="list_bar_inner_content">
+          <!-- 這邊用讀API的方式新增所有捷運站篩選的按鈕 -->
+
+
+            </div>
+      </div>
+      <button class="list_bar_right_but" onclick="list_bar_right_but_click()"></button>
+  </div>
+</div>
+
+<div class="attraction_area">
+  <div class="attraction_area_content">
+
+    <!-- 這邊新增景點卡片 -->
+  </div>
+</div>
+
+<div id = "space" ></div>
+
+
+
+<script>
+  // 預設先取一次全部的景點
+  get_attraction_data(page="0",keyword="")
+  get_mrt_data()
+
+  // 點擊捷運列表右邊按鈕
+  function att_search_but_click(){
+    //取得輸入框資訊
+    search_text = document.querySelector("#search_input").value
+
+    // 先清空現有的景點
+    let web_att_card = document.querySelectorAll('.attraction_area_box');
+    for(let n =0 ; n<web_att_card.length; n++){
+        web_att_card[n].remove()
+        };
+
+    page_refresh()
+    keyword_update()
+    get_attraction_data(now_page,search_text)
+    }
   
+  let right_but_maxclick_times=0
+  now_move_width = 0
+  // 捷運list_bar_but點擊
+  // 設定最大最小的position寬度
+  // 設定最右邊的點擊次數
+  function list_bar_left_but_click(){
+    //先檢視網頁寬度
+    let body_dom = document.querySelector(".body");
+    let body_dom_width = body_dom.offsetWidth;
+    console.log(body_dom_width)
+
+    if(now_move_width<0){
+      mrt_item_dom =  document.querySelectorAll(".list_bar_inner_content_mrt");
+      now_move_width+=30
+      
+      for(i=0;i<mrt_item_dom.length;i++){
+        mrt_item_dom[i].style.left =  `${now_move_width}px` 
+      };
+    }
+  }
+
+  function list_bar_right_but_click(){
+    let body_dom = document.querySelector(".body");
+    let body_dom_width = body_dom.offsetWidth;
+    console.log(body_dom_width)
+    let max_width;
+
+    if(body_dom_width<360){
+      max_width = -1600;
+    }else{
+      max_width = -670;
+    };
+    
+    if(now_move_width > max_width){
+      mrt_item_dom =  document.querySelectorAll(".list_bar_inner_content_mrt");
+      now_move_width-=30
+
+      for(i=0;i<mrt_item_dom.length;i++){
+        mrt_item_dom[i].style.left =  `${now_move_width}px`
+      };
+    };
+  };
+
+  // 呼叫捷運API回傳捷運訊息
+  async function get_mrt_data(){
+    fetch(`/api/mrts`).then(function(response){
+            // 產生response物件
+            return response.json();
+            }).then(function(data){
+              let mrt_data = data['data'];
+              // console.log(mrt_data)
+              for(let i=0;i< mrt_data.length; i++){
+                // console.log(mrt_data[i])
+                let mrt_box_dom = document.createElement("div");
+                mrt_box_dom.className = "list_bar_inner_content_mrt";
+                mrt_box_dom.id = `mrt_${i}`;
+                mrt_box_dom.type
+                mrt_box_dom.textContent = mrt_data[i],//插入景點名稱
+
+                document.querySelector(".list_bar_inner_content").appendChild(mrt_box_dom);;
+                // mrt_box_dom.onclick = mrt_but_click();
+              
+                mrt_box_dom.addEventListener('click', () => {
+                console.log(mrt_data[i]);
+                document.querySelector("#search_input").value=""; //清空輸入欄
+                document.querySelector("#search_input").value = mrt_data[i];
+
+                // 先清空現有的景點
+                let web_att_card = document.querySelectorAll('.attraction_area_box');
+                for(let n =0 ; n<web_att_card.length; n++){
+                    web_att_card[n].remove()
+                    };
+
+                page_refresh()
+                keyword_update()
+                get_attraction_data(now_page,mrt_data[i])
+
+
+                right_but_maxclick_times+=1
+
+                });
+
+                let mrt_item_Width = document.getElementById(`mrt_${i}`).clientWidth;
+              }
+            });
+      };
+
+  let now_page; //當前頁數
+  let next_page; //下一頁的頁數
+  
+  // 呼叫景點API回傳景點訊息
+  async function get_attraction_data(page,keyword){
+    fetch(`/api/attractions?page=${page}&keyword=${keyword}`).then(function(response){
+          // 產生response物件
+          return response.json();
+          }).then(function(data){
+            let att_data = data['data'];
+            next_page = data['nextPage']
+
+            // 展出所有的景點卡片
+            for(let i=0;i< att_data.length; i++){
+              att_id = att_data[i]['id']
+              let attraction_box_dom = document.createElement("div");
+              attraction_box_dom.className = "attraction_area_box";
+              attraction_box_dom.id = `att_${att_id}`;
+              document.querySelector(".attraction_area_content").appendChild(attraction_box_dom);
+
+              // 整個景點卡片
+              let attraction_card_dom = document.createElement("div");
+              attraction_card_dom.className = "attraction_area_box_item";
+              attraction_card_dom.id = `att_card_${att_id}`;
+              document.querySelector(`#att_${att_id}`).appendChild(attraction_card_dom);
+
+              // 景點圖片
+              att_url = att_data[i]['images'][0]
+              let attraction_img_dom = document.createElement("div");
+              attraction_img_dom.className = "attraction_area_box_item_img";
+              attraction_img_dom.id = `att_img_${att_id}`;
+              attraction_img_dom.style.backgroundImage=`url("${att_url}")`
+              attraction_img_dom.style.backgroundSize=`cover`
+              document.querySelector(`#att_card_${att_id}`).appendChild(attraction_img_dom);;
+
+              // 景點名稱框
+              let attraction_name_dom = document.createElement("div");
+              attraction_name_dom.className = "attraction_area_box_item_text_box";
+              attraction_name_dom.id = `att_name_box_${att_id}`;
+              attraction_name_dom.textContent = att_data[i]['name'],//插入景點名稱
+              document.querySelector(`#att_img_${att_id}`).appendChild(attraction_name_dom);;
+
+
+              // 整個景點捷運站和類別框
+              let attraction_text_box_dom = document.createElement("div");
+              attraction_text_box_dom.className = "attraction_area_box_item_text_box_name";
+              attraction_text_box_dom.id = `att_text_box_${att_id}`;
+              document.querySelector(`#att_card_${att_id}`).appendChild(attraction_text_box_dom);;
+
+              // 景點捷運站
+              let attraction_text_box_dom_mrt = document.createElement("div");
+              attraction_text_box_dom_mrt.className = "attraction_area_box_item_text_box_name_mrt";
+              attraction_text_box_dom_mrt.id = `att_text_box_mrt_${att_id}`;
+              attraction_text_box_dom_mrt.textContent = att_data[i]['mrt'],//插入捷運名稱
+              document.querySelector(`#att_text_box_${att_id}`).appendChild(attraction_text_box_dom_mrt);;
+
+              // 景點類別框
+              let attraction_text_box_dom_class = document.createElement("div");
+              attraction_text_box_dom_class.className = "attraction_area_box_item_text_box_name_class";
+              attraction_text_box_dom_class.id = `att_text_box_class_${att_id}`;
+              attraction_text_box_dom_class.textContent = att_data[i]['category'],//插入景點類別
+              document.querySelector(`#att_text_box_${att_id}`).appendChild(attraction_text_box_dom_class);;
+            };
+
+          });
+    };
+
+
+// Debounce 讓用滾輪頁面滾到最下面時不會被執行太多次
+async function debounce(func, delay) {
+  let timeoutId;
+
+  return function(...args) {
+    clearTimeout(timeoutId);
+
+    timeoutId = setTimeout(() => {
+      func.apply(this, args);
+    }, delay);
+  };
+}
+
+// throttle 讓用滾輪頁面滾到最下面時不會被執行太多次
+function throttle(func, delay) {
+  let lastCall = 0;
+  return function(...args) {
+    const now = new Date().getTime();
+    if (now - lastCall < delay) {
+      return;
+    }
+    lastCall = now;
+    func.apply(this, args);
+  };
+}
+
+let keyword2 = "";
+let nextPage_list = [];
+let have_page =[0];
+
+//將現有頁面變數更新
+function next_page_fun(){
+  now_page += 1
+};
+
+//將現有頁面變數重製
+function page_refresh(){
+  now_page = 0;
+  have_page =[];
+  have_page.push(0);
+};
+
+//關鍵字更新
+function keyword_update(){
+  keyword2 = document.querySelector("#search_input").value
+};
+
+//載入下一頁景點的卡片
+async function show_attraction_card(now_page, keyword2) {
+
+      if(next_page==null){
+      // console.log("到底了")
+
+      }else if(next_page in have_page){
+        // console.log("重複")
+
+      }else{
+        get_attraction_data(page = next_page,keyword=keyword2)
+        have_page.push(next_page)
+        next_page_fun()
+      };
+  }
+
+let debouncedMyFunction = debounce(show_attraction_card, 500);
+let throttleMyFunction = throttle(show_attraction_card, 500);
+// let buffer = 20; // 設定滾動的緩衝區為 20 px，滾動到下面底之前20px就會啟動
+
+// observer方法監聽滾動
+const obj = document.querySelector('#space');
+const opition = {
+    root: null,
+    rootMargin: "0px 0px 0px 0px",
+    threshold: 0
+};
+
+let observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            throttleMyFunction(now_page, keyword2);
+          }
+    })
+}, opition);
+
+// 監聽 obj
+observer.observe(obj);
+
+
+
+</script>
+
 </body>
 </html>
