@@ -32,7 +32,7 @@
         <div class="slogan_title">輕鬆享受台北的一日悠閒</div>
         <div class="slogan_content">探索每個角落，體驗城市的深度旅遊行程</div>
         <div class="search_area">
-          <input class="search_input" id="search_input" type="text" name="search_input"/>
+          <input class="search_input" id="search_input" type="text" name="search_input" placeholder="請輸入景點名稱查詢"/>
           <button class="search_but" onclick="att_search_but_click()"></button>
         </div>
     </div>
@@ -150,6 +150,18 @@
                 console.log(mrt_data[i]);
                 document.querySelector("#search_input").value=""; //清空輸入欄
                 document.querySelector("#search_input").value = mrt_data[i];
+
+                // 先清空現有的景點
+                let web_att_card = document.querySelectorAll('.attraction_area_box');
+                for(let n =0 ; n<web_att_card.length; n++){
+                    web_att_card[n].remove()
+                    };
+
+                page_refresh()
+                keyword_update()
+                get_attraction_data(now_page,mrt_data[i])
+
+
                 right_but_maxclick_times+=1
 
                 });
