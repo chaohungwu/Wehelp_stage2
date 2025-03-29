@@ -1,9 +1,6 @@
 .body{
-    display: flex;
-    justify-content: center;
     margin: 0;
     padding: 0;
-    max-width: 1920px;
 }
 
 .Navigation{
@@ -56,12 +53,12 @@
 .attraction_contain{
     display: flex;
     width: 100%;
-    max-width: 1200px;
     height: auto;
     justify-content: center;
     flex-wrap: wrap;
     flex-grow: 1;
-    padding-top: 40px;
+    flex-direction: column;
+    align-content: center;
 }
 
 .attraction_content{
@@ -70,7 +67,8 @@
     width: 100%;
     max-width: 1200px;
     justify-content: center;
-
+    flex-wrap: wrap;
+    flex-grow: 1;
 }
 .attraction_content_left{
     display: flex;
@@ -78,8 +76,6 @@
     width: 100%;
     max-width: 600px;
     min-width: 360px;
-    justify-self: start;
-    justify-items: center;
     align-items: center;
 }
 
