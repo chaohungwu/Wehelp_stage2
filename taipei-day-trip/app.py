@@ -3,6 +3,7 @@ from typing import Annotated
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 import json
+from fastapi.responses import HTMLResponse
 
 app=FastAPI()
 
@@ -290,12 +291,16 @@ def get_mrt_info():
 		raise HTTPException(status_code=500, detail={"error":True, "message":"伺服器內部錯誤"})
 
 
+# @app.get("/attraction/{id}", include_in_schema=False)
+# async def attraction(request: Request, id: int):
+# 	return FileResponse("./static/attraction.html", media_type="text/html")
+
+
+
+
+
 
 # Static Pages (Never Modify Code in this Block)以下是靜態文件
-app.mount("/", StaticFiles(directory="static" ,html=True))#所有靜態文件資料夾
-# app.mount("/", StaticFiles(directory="/home/ubuntu/Wehelp_stage2/taipei-day-trip/static" ,html=True))#所有靜態文件資料夾
-
-
 @app.get("/", include_in_schema=False)
 async def index(request: Request):
 	return FileResponse("./static/index.html", media_type="text/html")
@@ -308,3 +313,5 @@ async def booking(request: Request):
 @app.get("/thankyou", include_in_schema=False)
 async def thankyou(request: Request):
 	return FileResponse("./static/thankyou.html", media_type="text/html")
+
+app.mount("/", StaticFiles(directory="static" ,html=True))#所有靜態文件資料夾
