@@ -1,0 +1,870 @@
+.body{
+    margin: 0;
+    padding: 0;
+}
+
+.Navigation{
+    display: flex;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 45px;
+    justify-content: center;
+    position:fixed;
+    background-color: rgb(255, 255, 255);
+    margin-bottom: 10px;
+    z-index: 1;
+    border-bottom: 1px solid rgba(192, 192, 192, 0.3);
+}
+
+.Navigation_Bar{
+    display: flex;
+    width: 1200px;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+
+.Navigation_Bar__LeftText{
+    font-size: 25px;
+    font-weight: bold;
+    width: auto;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.Navigation_BarRigh{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: auto; 
+    gap: 20px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.Navigation_Bar__LeftText--color{
+    color: rgb(68, 136, 153);
+}
+
+.Navigation_Bar__RightText--color{
+    color: rgb(120, 120, 120);
+}
+
+/* -------------上半部分景點容器 ----------------*/
+.attraction_contain{
+    display: flex;
+    width: 100%;
+    height: auto;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+    padding: 0;
+    padding-top: 20px;
+    box-sizing: border-box;
+}
+
+.attraction_content{
+    display: flex;
+    height: auto;
+    width: 100%;
+    max-width: 1200px;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0;
+    box-sizing: border-box;
+}
+.attraction_content_left{
+    display: flex;
+    height: 450px;
+    width: 100%;
+    max-width: 600px;
+    min-width: 360px;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.attraction_content_left_carousel{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    max-width: 580px;
+    justify-content: center;
+    justify-content: start;
+}
+
+.attraction_content_left_carousel_img{
+    width: 100%;
+    height: 100%;
+    border-radius:8px 8px 8px 8px;
+}
+
+.but_container{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    min-width: 360px;
+    background-image: url("./img/welcome.png");
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:cover;
+    /* background-color: gray; */
+    border-radius:8px 8px 8px 8px;
+    justify-content: center;
+}
+
+
+.attraction_content_left_carousel_img_leftbut{
+    display: flex;
+    height: 100%;
+    width: 10%;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    outline: none;
+    background-image: url("./img/carousel_leftbut.png");
+    background-position:center;
+    background-size:25px;
+    background-repeat:no-repeat;
+    /* background-color:gray; */
+    justify-self: start;
+}
+
+
+
+.attraction_content_left_carousel_img_rightbut{
+    display: flex;
+    height: 100%;
+    width: 10%;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    outline: none;
+    background-image: url("./img/carousel_rightbut.png");
+    background-position:center;
+    background-size:25px;
+    background-repeat:no-repeat;
+    justify-self: end;
+
+}
+.attraction_content_left_carousel_img_circle{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    /* gap: 10px; */
+}
+
+
+.attraction_content_right{
+    display: flex;
+    height: 450px;
+    width: 100%;
+    max-width: 600px;
+    min-width: 360px;
+    justify-content: center;
+    align-items: center;
+}
+
+.attraction_content_right_content{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    max-width: 600px;
+    min-width: 360px;
+    justify-content: start;
+    flex-direction: column;
+}
+
+.attraction_content_right_title{
+    display: flex;
+    width: 80%;
+    height: 15%;
+    font-weight: bold;
+    font-size: 25px;
+    font-family: "Gill Sans Extrabold", sans-serif;
+    align-items: center;
+    color: rgb(102,102,102);
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+
+.attraction_content_right_info{
+    display: flex;
+    width: 100%;
+    height: 10%;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: Microsoft JhengHei;
+    align-items: center;
+    color: rgb(102,102,102);
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+
+.attraction_content_right_booking{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.attraction_content_right_booking_area{
+    display: flex;
+    width: 100%;
+    height: 95%;
+    background-color: rgb(232, 232, 232);
+    border-radius:8px 8px 8px 8px;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.attraction_content_right_booking_area_title{
+    display: flex;
+    width: 100%;
+    height: 20%;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(102, 102, 102);
+    align-items: center;
+    box-sizing: border-box;
+    padding-left: 10px;
+}
+
+.attraction_content_right_booking_area_text{
+    display: flex;
+    width: auto;
+    height: 12.5%;
+    font-weight: bold;
+    border-radius:8px 8px 8px 8px;
+    box-sizing: border-box;
+    padding-left: 10px;
+    color: rgb(102, 102, 102);
+    align-items: center;
+}
+
+.attraction_content_right_booking_area_title_info{
+    display: flex;
+    width: 100%;
+    height: 60%;
+    border-radius:8px 8px 8px 8px;
+    box-sizing: border-box;
+    position: relative;
+    left: 10px;
+    right: 10px;
+    /* margin-left: 10px;
+    margin-right: 10px; */
+}
+.attraction_content_right_booking_area_info_area{
+    display: flex;
+    width: 100%;
+    height: 45%;
+    border-radius:8px 8px 8px 8px;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.attraction_content_right_booking_area_info_area_date{
+    display: flex;
+    width: 100%;
+    height: 40%;
+    border-radius:8px 8px 8px 8px;
+    align-items: center;
+    box-sizing: border-box;
+    padding-left: 10px;
+    color: rgb(102, 102, 102);
+    font-weight: bold;
+}
+.date_style{
+    width: 193px;
+    height: 35px;
+    border: none;
+    border-radius:3px 3px 3px 3px;
+    font-size: 15px;
+    padding-top: 5px;
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+
+
+
+.attraction_content_right_booking_area_info_area_time{
+    display: flex;
+    width: 100%;
+    height: 30%;
+    border-radius:8px 8px 8px 8px;
+    align-items: center;
+    justify-items: start;
+    justify-content: start;
+    box-sizing: border-box;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: rgb(102, 102, 102);
+}
+.time_text_style{
+    display: flex;
+    width: 100px;
+    flex-wrap: nowrap;
+    font-weight: bold;
+}
+
+.group {
+    display: flex;
+    width: auto;
+    height: 100%;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+
+.radio-group {
+width: 90px;
+max-width: 90px;
+min-width: 60px;
+display: inline-block;
+margin-bottom: 1rem;
+}
+
+.radio-input{
+    /* 把原本的input藏起來 */
+    visibility: hidden; 
+}
+.radio-label {
+    width: auto;
+    display: flex;
+    font-size: 15px;
+    cursor: pointer;
+    position: relative;
+    padding-left: 30px;
+    font-weight: bold;
+
+}
+
+.radio-button {
+/* 自定義樣式的span */
+height: 15px;
+width: 15px;
+border: 2px solid white;
+border-radius: 50%;
+background-color: white;
+display: inline-block;
+position: absolute;
+left: 0;
+top: 0;
+}
+.radio-button::after { /* 中間點點 */
+content: "";
+display: block;
+height: 100%;
+width: 100%;
+border-radius: 50%;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background-color: rgb(68, 136, 153);
+opacity: 0;
+transition: opacity 0.2s;
+}
+.radio-input:checked ~ .radio-label .radio-button::after {
+/* 選中radio時 才顯示中間點點 */
+opacity: 1;
+}
+
+
+
+.attraction_content_right_booking_area_info_area_price{
+    display: flex;
+    width: 100%;
+    height: 40%;
+    border-radius:8px 8px 8px 8px;
+    align-items: center;
+    color: rgb(102, 102, 102);
+    box-sizing: border-box;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-weight: bold;
+}
+
+
+
+
+.attraction_content_right_booking_area_but_area{
+    display: flex;
+    width: 100%;
+    height: 15%;
+    align-items: center;
+    box-sizing: border-box;
+    padding-left: 10px;
+}
+
+.attraction_content_right_booking_area_but{
+    display: flex;
+    height: 70%;
+    width: 154px;
+    border-radius:8px 8px 8px 8px;
+    box-sizing: border-box;
+    padding-left: 10px;
+    background-color: rgb(68, 136, 153);
+    border: none;
+    outline: none;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+
+.hr_style {
+    display: flex;
+    width: 100%;
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    box-sizing: border-box;
+}
+
+.hr_contain_style{
+    display: flex;
+    height: 30px;
+    width: 100%;
+    max-width: 1200px;
+    min-width: 360px;
+    flex-wrap: wrap;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+
+.attraction_contain_down{
+    display: flex;
+    height: auto;
+    width: 100%;;
+    max-width: 1200px;
+    min-width: 360px;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
+.attraction_contain_down_info{
+    display: flex;
+    height: auto;
+    width: 100%;;
+    max-width: 1200px;
+    min-width: 360px;
+    color: rgb(102, 102, 102);
+    font-weight: bold;
+    align-items: center;
+    line-height: 26px;
+    box-sizing: border-box;
+}
+
+.attraction_contain_down_address{
+    display: flex;
+    width: 100%;;
+    max-width: 1200px;
+    min-width: 360px;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+.attraction_contain_down_address_title{
+    display: flex;
+    width: 100%;;
+    font-weight: bold;
+    color: rgb(102, 102, 102);
+    align-items: center;
+    box-sizing: border-box;
+}
+.attraction_contain_down_address_content{
+    display: flex;
+    width: 100%;
+    color: rgb(102, 102, 102);
+    align-items: center;
+    font-weight: 600;
+    position: relative;
+    bottom: 20px;
+    box-sizing: border-box;
+}
+.attraction_contain_down_transportation{
+    display: flex;
+    width: 100%;;
+    max-width: 1200px;
+    min-width: 360px;
+    flex-wrap: wrap; 
+    box-sizing: border-box;
+}
+.attraction_contain_down_transportation_title{
+    display: flex;
+    width: 100%;
+    color: rgb(102, 102, 102);
+    font-weight: bold;
+    align-items: center;
+    box-sizing: border-box;
+}
+.attraction_contain_down_transportation_content{
+    display: flex;
+    width: 100%;
+    color: rgb(102, 102, 102);
+    align-items: center;
+    font-weight: 600;
+    position: relative;
+    bottom: 20px;
+}
+
+
+
+  /* 顯示的容器，顯示當前照片 */
+.carousel{
+    height: 100%;
+    width: 100%;
+    max-width: 580px;
+    min-width: none;
+    margin: 0 auto;
+    border-radius:5px 5px 5px 5px;
+    overflow:hidden;
+    position: relative;
+}
+
+
+.container{
+    height: 100%;
+    width: 10000px;
+    display: flex;
+    border-radius:5px 5px 5px 5px;
+    transition-property: transform ;
+    transition-duration: 0.5s ;
+    transition-timing-function: ease ;
+
+}
+
+
+
+/* 整個橫的大容器，包含所有的圖片 */
+.content{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    max-width: 580px;
+    color: #fff;
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    border-radius:3px 3px 3px 3px;
+    overflow:hidden;
+
+}
+
+.add_new_img{
+    height: 100%;
+    width: 100%;
+    max-width: 580px;
+    background-size:cover;
+    border-radius:3px 3px 3px 3px;
+}
+
+.btnContainer {
+    display: flex;
+    height: 100%;
+    /* gap: 10px; */
+    position: relative;
+    bottom: 100%;
+    justify-content: space-between;
+}
+
+.btn {
+    display: flex;
+    height: 100%;
+    min-height: fit-content;
+    width: 50px;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    outline: none;
+    background-position:center;
+    background-size:25px;
+    background-repeat:no-repeat;
+}
+
+.btn-prev{
+    display: flex;
+    min-height: 40px;
+    background-image: url("./img/carousel_leftbut.png");
+    position: relative;
+
+}
+
+.btn-next{
+    display: flex;
+    min-height: 40px;
+    background-image: url("./img/carousel_rightbut.png");
+
+}
+
+.bottomdot_group{
+    display: flex;
+    position: relative;
+    bottom: 470px;
+    justify-content: center;
+    gap: 5px;
+}
+
+
+.attraction_content_left_carousel_img_bottomdot{
+    height: 10px;
+    width: 10px;
+    background-color: white;
+    border-radius:50%;
+    border: 2px solid white
+}
+
+
+
+
+/* RWD */
+/* 手機 */
+@media(max-width: 360px){
+    .body{
+        margin: 0;
+        padding: 0;
+    }
+    .Navigation{
+        display: flex;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        max-width: 360px;
+        height: 45px;
+        justify-content: center;
+        position:fixed;
+        background-color: rgb(255, 255, 255);
+        margin-bottom: 10px;
+        border-bottom: none;
+    }
+
+    .Navigation_Bar__LeftText{
+        position: relative;
+        left: 10px;
+        font-size: 25px;
+        font-weight: bold;
+        width: 50%;
+        align-items: center;
+    }
+    
+    .Navigation_BarRigh{
+        position: relative;
+        right: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%; 
+        gap: 20px;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    .attraction_contain{
+        display: flex;
+        width: 100%;
+        height: auto;
+        justify-content: center;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-content: center;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .attraction_content{
+        display: flex;
+        height: auto;
+        width: 100%;
+        max-width: 360px;
+        justify-content: center;
+        align-content: start;
+    }
+
+
+    .attraction_content_left{
+        display: flex;
+        height: 450px;
+        width: 100%;
+        max-width: 360px;
+        justify-self: start;
+        justify-items: center;
+        align-items: start;
+    }
+
+    .but_container{
+        display: flex;
+        height: auto;
+        width: auto;
+        background-image: url("./img/welcome.png");
+        background-position:center;
+        background-repeat:no-repeat;
+        background-size:cover;
+        border-radius:8px 8px 8px 8px;
+        justify-content: center;
+    }
+    .attraction_content_right{
+        display: flex;
+        height: 450px;
+        width: 100%;
+        max-width: 360px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 30px;
+        box-sizing: border-box;
+    }
+
+    .attraction_content_right_title{
+        display: flex;
+        width: auto;
+        height: auto;
+        font-weight: bold;
+        font-size: 23px;
+        align-items: center;
+        justify-self: center;
+        color: rgb(102,102,102);
+    }
+    
+    .attraction_content_right_info {
+        display: flex;
+        width: auto;
+        max-width: 360px;
+        height: 15%;
+        font-size: 16px;
+        font-weight: bold;
+        font-family: Microsoft JhengHei;
+        align-items: center;
+        color: rgb(102, 102, 102);
+    }
+
+
+    .attraction_content_right{
+        display: flex;
+        height: 400px;
+        width: 100%;
+        max-width: 360px;
+        /* background-color: gold; */
+        justify-content: center;
+        align-items: end;
+    }
+
+    .attraction_content_right_booking{
+        display: flex;
+        width: auto;
+        height: 100%;
+        max-width: 360px;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .attraction_content_right_booking_area {
+        display: flex;
+        width: 100%;
+        height: 95%;
+        max-width: 360px;
+
+        background-color: rgb(232, 232, 232);
+        border-radius: 8px 8px 8px 8px;
+        flex-direction: column;
+        box-sizing: border-box;
+        padding-left: 20px;
+        padding-right: 20px;    
+    }
+
+    .attraction_content_right_booking_area_title{
+        display: flex;
+        width: auto;
+        height: 20%;
+        font-size: 18px;
+        font-weight: bold;
+        color: rgb(102, 102, 102);
+        align-items: center;
+        justify-self: start;
+
+        box-sizing: border-box;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+
+    .hr_contain_style{
+        display: flex;
+        height: 30px;
+        width: auto;
+        max-width: 360px;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+    }
+
+    .hr_style {
+        display: flex;
+        width: 80%;
+        max-width: 360px;
+        border: 0;
+        height: 0;
+        box-sizing: border-box;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    
+
+    .attraction_contain_down{
+        height: auto;
+        width: 100%;
+        max-width: 360px;
+        justify-content: center;
+        align-content: center;
+        flex-wrap: wrap;
+        flex-grow: 1;
+    }
+
+    .attraction_contain_down_info {
+        color: rgb(102, 102, 102);
+        height: auto;
+        width: 100%;
+        line-height:26px;
+        box-sizing: border-box;
+        padding-left: 10px;
+        padding-right: 10px;
+
+    }
+
+    .attraction_contain_down_address {
+        display: flex;
+        width: auto;
+        flex-wrap: wrap;
+        box-sizing: border-box;
+        padding-left: 10px;
+        padding-right: 10px;
+
+    }
+
+    .attraction_contain_down_address_content {
+        display: flex;
+        width: auto;
+        color: rgb(102, 102, 102);
+        align-items: center;
+        box-sizing: border-box;
+    }
+
+    .attraction_contain_down_transportation {
+        display: flex;
+        width: auto;
+        flex-wrap: wrap;
+        align-content: start;
+        box-sizing: border-box;
+        padding-left: 10px;
+        padding-right: 10px;
+
+    }
+
+
+
+}

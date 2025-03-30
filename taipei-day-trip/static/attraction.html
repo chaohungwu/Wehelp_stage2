@@ -4,8 +4,308 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Attraction</title>
+  <link rel="stylesheet" type="text/css" href="/attraction_style.css"/>
+
 </head>
-<body>
-  
+
+<body class="body">
+  <!-- 首頁欄 -->
+  <div class="Navigation">
+    <div class="Navigation_Bar">
+      <div class="Navigation_Bar Navigation_Bar__LeftText Navigation_Bar__LeftText--color" onclick=home_page()>台北一日遊</div>
+      <div class="Navigation_BarRigh">
+        <span class="Navigation_Bar__RightText Navigation_Bar__RightText--color" >預定行程</span>
+        <span class="Navigation_Bar__RightText Navigation_Bar__RightText--color" >登入/註冊</span>
+      </div>
+    </div>
+  </div>
+  <div style="height: 45px;"></div>
+
+  <!-- 景點上半部分大框 -->
+  <div class="attraction_contain">
+    <div class="attraction_content">
+      <!-- 景點上半部分左半邊圖片 -->
+      <div class="attraction_content_left">
+        <div class="attraction_content_left_carousel">
+          <div class="attraction_content_left_carousel_img">
+            <div class="carousel">
+              <div class="container">
+
+              </div>
+        
+              <!-- 輪播按鈕 -->
+              <div class="btnContainer">
+                <button class="btn btn-prev" id="last_img_but"></button>
+                <button class="btn btn-next" id="next_img_but"></button>
+              </div>
+
+              <!-- 輪播底部點點 -->
+              <div class="bottomdot_group">
+                <!-- <div class="attraction_content_left_carousel_img_bottomdot"></div>
+                <div class="attraction_content_left_carousel_img_bottomdot"></div> -->
+              </div>
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+
+      <!-- 景點上半部分右半邊景點資訊 -->
+      <div class="attraction_content_right">
+        <div class="attraction_content_right_content">
+          <div class="attraction_content_right_title">平安鐘</div>
+          <div class="attraction_content_right_info">公共藝術at忠孝復興</div>
+          <div class="attraction_content_right_booking">
+            <div class="attraction_content_right_booking_area">
+              <div class="attraction_content_right_booking_area_title">訂購導覽行程</div>
+              <div class="attraction_content_right_booking_area_text">以此景點為中心的一日行程，帶您探索城市角落故事</div>
+
+              <div class="attraction_content_right_booking_area_info_area">
+                <div class="attraction_content_right_booking_area_info_area_date">
+                  選擇日期：
+                  <input type="date" class="date_style">
+                </div>
+
+                <div class="attraction_content_right_booking_area_info_area_time">
+                  <div class="time_text_style">選擇時間：</div>
+                  
+                  <div class="group">
+                    <div class="radio-group">
+                      <input type="radio" class="radio-input" id="1" value="2000" name="select_time" onclick="select_time_radio()" checked>
+                      <label for="1" class="radio-label" >
+                      <span class="radio-button"></span>
+                      上半天
+                      </label>
+                    </div>
+                  
+                    <div class="radio-group">
+                      <input type="radio" class="radio-input" id="2" value="2500" name="select_time" onclick="select_time_radio()">
+                      <label for="2" class="radio-label" >
+                        <span class="radio-button"></span>
+                        下半天
+                      </label>
+                    </div>
+                  
+                  </div>
+                </div>
+                <div class="attraction_content_right_booking_area_info_area_price">導覽費用：新台幣2000元</div>
+              </div>
+              
+              
+              <div class="attraction_content_right_booking_area_but_area">
+                <button class="attraction_content_right_booking_area_but">開始預約行程</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <!-- 景點下半部分大框 -->
+        <div class="hr_contain_style">
+          <hr class="hr_style"/>
+        </div>
+
+
+        <div class="attraction_contain_down">
+          <div class="attraction_contain_down_info">景點描述</div>
+
+          <div class="attraction_contain_down_address">
+            <h3 class="attraction_contain_down_address_title">景點地址：</h3>
+            <div class="attraction_contain_down_address_content">景點地址</div>
+          </div>
+
+          <div class="attraction_contain_down_transportation">
+            <h3 class="attraction_contain_down_transportation_title">交通方式：</h3>
+            <div class="attraction_contain_down_transportation_content">交通內容</div>
+          </div>
+        </div>
+    </div>
+        
+
+    </div>
+  </div>
+
+
+
+<script>
+
+  let att_id; //這個景點的ID
+  let img_num; //照片的數量
+
+  get_mrt_data();
+  get_attraction_id_data();
+  // select_time_radio()
+
+  async function get_mrt_data(){
+    fetch(`/api/mrts`).then(function(response){
+            // 產生response物件
+            return response.json();
+            }).then(function(data){
+              let mrt_data = data['data'];
+              console.log(mrt_data)
+            });
+          }
+
+  async function get_attraction_id_data(){
+    let url = location.href;
+    // 從後面數過來搜尋"/"
+    att_id = url.substr(url.lastIndexOf("/")+1);
+    console.log(att_id);
+
+
+
+
+    fetch(`/api/attraction/${att_id}`).then(function(response){
+            // 產生response物件
+            return response.json();
+            }).then(function(data){
+              let att_data = data['data'];
+              console.log(att_data)
+
+              // 改景點標題
+              document.querySelector(".attraction_content_right_title").textContent = att_data["name"]
+
+              //改景點類型at捷運站
+              document.querySelector(".attraction_content_right_info").textContent = `${att_data["category"]}at${att_data["mrt"]}`
+
+              //改行程描述
+              document.querySelector(".attraction_contain_down_info").textContent = att_data["description"]
+
+              //改景點地址
+              document.querySelector(".attraction_contain_down_address_content").textContent = att_data["address"]
+            
+              //改景點交通方式
+              document.querySelector(".attraction_contain_down_transportation_content").textContent = att_data["transport"]
+            
+              //改景點交通方式
+              document.querySelector(".attraction_contain_down_transportation_content").textContent = att_data["transport"]
+
+
+              // bottomdot_group
+              // 新增景點照片DOM
+              // 注意：第二個開始會有逗號
+              img_num = att_data["images"].length;
+              let con_length = document.querySelector(".container")//讓容器跟著圖片數變動
+              con_length.style.width=`${img_num*580}`
+
+
+              for(let i=0;i<att_data["images"].length;i++){
+
+                if(i==0){
+                  // 新增景點照片
+                  let new_img_dom = document.createElement("div");
+                  new_img_dom.className='content add_new_img'
+                  new_img_dom.tabIndex = i
+                  new_img_dom.style.backgroundImage = `url("${att_data["images"][i]}")`
+                  document.querySelector(".container").appendChild(new_img_dom);
+
+                  // 新增底部點點
+                  let dot_dom = document.createElement("div");
+                  dot_dom.className="attraction_content_left_carousel_img_bottomdot"
+                  dot_dom.id= `dot_${i}`
+                  dot_dom.style.backgroundColor="gray"
+
+                  document.querySelector(".bottomdot_group").appendChild(dot_dom);
+
+
+                }else{
+                  // 新增景點照片
+                  let new_img_dom = document.createElement("div");
+                  new_img_dom.className='content add_new_img'
+                  new_img_dom.tabIndex = i
+                  new_img_dom.style.backgroundImage = `url("${att_data["images"][i].substring(1)}")` //處理有逗號的狀況
+                  document.querySelector(".container").appendChild(new_img_dom);
+
+                  // 新增底部點點
+                  let dot_dom = document.createElement("div");
+                  dot_dom.className="attraction_content_left_carousel_img_bottomdot"
+                  dot_dom.id= `dot_${i}`
+                  document.querySelector(".bottomdot_group").appendChild(dot_dom);
+
+                }
+              }
+            });
+    
+  }
+
+  async function select_time_radio(){
+    // group
+    // let all_price_dom = document.querySelector('.group');
+    let rates = document.querySelectorAll('.radio-input');
+    for(var i = 0; i < rates.length; i++){
+    if(rates[i].checked){
+        rate_value = rates[i].value;
+        console.log(rate_value)
+        document.querySelector(".attraction_content_right_booking_area_info_area_price").textContent = `導覽費用：新台幣${rate_value}元`
+      }
+    }
+
+  }
+
+
+// 輪播功能
+let img_click_times = 0 //圖片位置
+//img_num; //照片的數量
+
+let last_but = document.querySelector('#last_img_but');
+let next_but = document.querySelector('#next_img_but');
+let container = document.querySelector('.container');
+
+next_but.addEventListener('click', () => {
+
+  if (img_click_times < img_num - 1) { // 防止超出範圍
+      img_click_times++;
+      updateCarousel();
+
+      // 改動下面的點點顏色
+      let last_dot_dom = document.querySelector(`#dot_${img_click_times-1}`)
+      last_dot_dom.style.backgroundColor="white"
+      
+      let now_dot_dom = document.querySelector(`#dot_${img_click_times}`)
+      now_dot_dom.style.backgroundColor="gray"
+
+      // console.log(img_click_times)
+      // console.log("next")
+      }
+});
+
+last_but.addEventListener('click', () => {
+  if (img_click_times > 0) { // 防止負數
+      img_click_times--;
+      updateCarousel()
+
+      // 改動下面的點點顏色
+      let last_dot_dom = document.querySelector(`#dot_${img_click_times+1}`)
+      last_dot_dom.style.backgroundColor="white"
+      
+      let now_dot_dom = document.querySelector(`#dot_${img_click_times}`)
+      now_dot_dom.style.backgroundColor="gray"
+
+
+      // console.log(img_click_times)
+      // console.log("last")
+      }
+});
+
+function updateCarousel() {
+  let container = document.querySelector('.container');
+  container.style.transform = `translateX(${-580 * img_click_times}px)`;
+
+}
+
+//回首頁
+async function home_page(){
+  window.location.href = `/`
+}
+
+
+
+</script>
+
+
 </body>
 </html>
