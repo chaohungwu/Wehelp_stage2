@@ -57,10 +57,10 @@
     height: auto;
     justify-content: center;
     flex-wrap: wrap;
-    /* flex-grow: 1; */
     flex-direction: column;
     align-content: center;
     padding: 0;
+    padding-top: 20px;
     box-sizing: border-box;
 }
 
@@ -603,7 +603,7 @@ opacity: 1;
 .bottomdot_group{
     display: flex;
     position: relative;
-    bottom: 430px;
+    bottom: 470px;
     justify-content: center;
     gap: 5px;
 }
@@ -662,6 +662,17 @@ opacity: 1;
         font-weight: bold;
     }
 
+    .attraction_contain{
+        display: flex;
+        width: 100%;
+        height: auto;
+        justify-content: center;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-content: center;
+        padding: 0;
+        box-sizing: border-box;
+    }
     .attraction_content{
         display: flex;
         height: auto;
