@@ -86,7 +86,7 @@
 
 .attraction_content_left_carousel{
     display: flex;
-    height: 90%;
+    height: 100%;
     width: 100%;
     max-width: 580px;
     justify-content: center;
@@ -166,7 +166,7 @@
 
 .attraction_content_right_content{
     display: flex;
-    height: 90%;
+    height: 100%;
     width: 100%;
     max-width: 600px;
     min-width: 360px;
@@ -276,13 +276,16 @@
     font-weight: bold;
 }
 .date_style{
-    width: 180px;
+    width: 193px;
+    height: 35px;
     border: none;
     border-radius:3px 3px 3px 3px;
     font-size: 15px;
+    padding-top: 5px;
     padding-left: 10px;
     box-sizing: border-box;
 }
+
 
 
 .attraction_content_right_booking_area_info_area_time{
@@ -635,6 +638,7 @@ opacity: 1;
         position:fixed;
         background-color: rgb(255, 255, 255);
         margin-bottom: 10px;
+        border-bottom: none;
     }
 
     .Navigation_Bar__LeftText{
@@ -664,16 +668,7 @@ opacity: 1;
         width: 100%;
         max-width: 360px;
         justify-content: center;
-    }
-
-    .attraction_content_left{
-        display: flex;
-        height: 450px;
-        width: 100%;
-        max-width: 360px;
-        justify-self: start;
-        justify-items: center;
-        align-items: center;
+        align-content: start;
     }
 
 
@@ -684,8 +679,7 @@ opacity: 1;
         max-width: 360px;
         justify-self: start;
         justify-items: center;
-        align-items: center;
-
+        align-items: start;
     }
 
     .but_container{
@@ -704,10 +698,9 @@ opacity: 1;
         height: 450px;
         width: 100%;
         max-width: 360px;
-        justify-content: start;
-        align-items: center;
         padding-left: 10px;
         padding-right: 10px;
+        padding-top: 30px;
         box-sizing: border-box;
     }
 
@@ -794,6 +787,9 @@ opacity: 1;
         max-width: 360px;
         flex-wrap: wrap;
         align-items: center;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
     }
 
     .hr_style {
