@@ -218,7 +218,6 @@ async function signin(){
     let response = await fetch("/api/auth",
         {
           method:"PUT",
-  
           //發送請求到後方並戴上這些json
           //加上這一串後會將BODY中的東西以json格式傳到後端，但是在fastapi中會自動轉為dict，這邊要注意
           headers: {

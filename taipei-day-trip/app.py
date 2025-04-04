@@ -430,10 +430,16 @@ async def user_signin(request: Request, body = Body(None)):
 		
 		else:
 			# 確認做完哈希的密碼
+			print('123')
 			pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+			
+			print('222')
 			var_hash_password = pwd_context.verify(user_password, search_results[0][4])
+		
+			print('333')
 
 		#2.登入成功，取得token
+			print('444')
 			if user_email == search_results[0][2] and var_hash_password:
 				payload = {
 							'id': search_results[0][0],
