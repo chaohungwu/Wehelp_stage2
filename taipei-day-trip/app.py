@@ -430,33 +430,34 @@ async def user_signin(request: Request, body = Body(None)):
 		
 		else:
 			# 確認做完哈希的密碼
-			print('123')
 			pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 			
-			print('222')
 			var_hash_password = pwd_context.verify(user_password, search_results[0][4])
 		
-			print('333')
 
 		#2.登入成功，取得token
-			print('444')
-			if user_email == search_results[0][2] and var_hash_password:
-				payload = {
-							'id': search_results[0][0],
-							'name': search_results[0][1],
-							'email': search_results[0][2],
-							"exp": datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(seconds=3600*7)
-							#'exp': 1743580563  # 過期時間 (Unix timestamp)
-							}
+			try:
+				if user_email == search_results[0][2] and var_hash_password:
+					payload = {
+								'id': search_results[0][0],
+								'name': search_results[0][1],
+								'email': search_results[0][2],
+								"exp": datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(seconds=3600*7)
+								#'exp': 1743580563  # 過期時間 (Unix timestamp)
+								}
+					
+					#編碼
+					encoded_jwt = jwt.encode(payload, secret_key, algorithm=algorithm)
+					# print(encoded_jwt)
+					return {"token": encoded_jwt}
 				
-				#編碼
-				encoded_jwt = jwt.encode(payload, secret_key, algorithm=algorithm)
-				# print(encoded_jwt)
-				return {"token": encoded_jwt}
-		
-			#3.密碼錯誤
-			else:
-				return JSONResponse(content={"error": True, "message": "密碼錯誤"}, status_code=400)
+								#3.密碼錯誤
+				else:
+					return JSONResponse(content={"error": True, "message": "密碼錯誤"}, status_code=400)
+
+			except Exception as e:
+				print(e)
+
 	except:
 		raise HTTPException(status_code=500, detail={"error":True, "message":"伺服器內部錯誤"})
 
