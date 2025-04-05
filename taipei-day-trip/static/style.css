@@ -1,5 +1,6 @@
 
-.body{
+
+body {
     margin: 0;
     padding: 0;
 }
@@ -30,6 +31,7 @@
     width: auto;
     align-items: center;
     flex-wrap: nowrap;
+    cursor:pointer;
 }
 
 .Navigation_BarRigh{
@@ -40,6 +42,7 @@
     gap: 20px;
     font-size: 15px;
     font-weight: bold;
+    cursor:pointer;
 }
 
 .Navigation_Bar__LeftText--color{
@@ -62,6 +65,7 @@
     background-size:cover;
     background-repeat:no-repeat;
     width: 100%;
+    height: 350px;
     justify-content: center;
     /* padding-left: 10%; */
 }
@@ -72,13 +76,11 @@
     width: 1200px;
     max-width: 1200px;
     min-width: 360px;
-    /* width: 62.5%; */
     align-self: center;
     flex-direction: column;
     gap: 25px;
     white-space: nowrap;
     justify-content: start;
-    /* justify-items: start; */
 }
 
 
@@ -101,13 +103,13 @@
 .search_area{
     display: flex;
     align-items: center;
-    width: 100%;
+    width: auto;
 }
 
 .search_input{
     height: 45px;
     width: 340px;
-    max-width:360px;
+    /* max-width:360px; */
     font-size: 18px;
     border-radius:5px 0 0 5px;
     border: none;
@@ -193,22 +195,21 @@
     gap:20px;
     flex-wrap: nowrap;
     overflow-x: scroll;
+    box-sizing: border-box;
 }
+
 .list_bar_inner_content::-webkit-scrollbar {
     display: none
 }
 
 .list_bar_inner_content_mrt{
     width: auto;
-    /* flex-wrap: nowrap; */
     flex-grow: 1;
     white-space: nowrap;
     color: gray;
     font-weight: bold;
-    /* margin-left: 30px */
     /* 這邊做移動 */
     position: relative;
-    /* left: 30px; */
 
 }
 
@@ -228,7 +229,6 @@
     /* flex-grow: 1; */
     flex-wrap: wrap;
     /* justify-content:start; */
-
 }
 
 .attraction_area_box{
@@ -282,9 +282,7 @@
     display: flex;
     width: 100%;
     height: 45px;
-    /* background-color: burlywood; */
     align-items: center;
-    /* border: 1px; */
     border-radius:0 0 5px 5px;
     background-color:white;
 }
@@ -292,16 +290,13 @@
 .attraction_area_box_item_text_box_name_mrt{
     display: flex;
     align-items: center;
-
     width: 135px;
     height: 45px;
     font-size: 15px;
     margin-left: 10px;
-
+    box-sizing: border-box;
     font-weight: bold;
     color: gray;
-    /* text-align:center; */
-    /* background-color:indianred; */
 }
 
 .attraction_area_box_item_text_box_name_class{
@@ -315,6 +310,7 @@
     align-self: center;
     justify-content: end;
     margin-right: 10px;
+    box-sizing: border-box;
 }
 
 
@@ -324,11 +320,311 @@
     background-color: aquamarine;
 }
 
+.signin_table_background{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    justify-content: center;
+    align-items: center;
+    background-color:rgba(102, 102, 102, 0.5);
+}
+
+
+
+/* 嘗試使用BEM方式 */
+.signin_enter{
+    display: flex;
+    width: 340px;
+    height: auto;
+    min-height: 275px;
+    border-radius:5px;
+    position: fixed;
+    top:20%;
+    z-index: 1;
+    background-color: white;
+    flex-direction: column;
+    justify-content: start;
+    align-content: center;
+}
+
+.signin_enter__top{
+    display: block;
+    width: 100%;
+    height: 10px;
+    border-radius:5px 5px 0px 0px;
+}
+
+.signin_enter__top--coler1{
+    background-color: rgb(66, 134, 151);
+}
+
+.signin_input_area{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+}
+
+.signin_input_area_title_area{
+    display: flex;
+    width: 100%;
+    height: auto;
+}
+
+.signin_input_area_title_area__title{
+    display: block;
+    width: 100%;
+    height: auto;
+    font-weight: bolder;
+    font-size: 25px;
+    text-align: center;
+    padding-top: 17px;
+    padding-left: 30px;
+    box-sizing: border-box;
+}
+.signin_input_area_title_area__title--fontcoler1{
+    color: rgb(102, 102, 102);
+}
+
+.signin_input_area_title_area__close{
+    display: block;
+    width: 30px;
+    height: 30px;
+    font-weight: bold;
+    font-size: 25px;
+    text-align: center;
+    /* background-image: url('./img/close_but.png'); */
+    
+    background-size: cover;
+    box-sizing: border-box;
+    position: relative;
+    top: 15px;
+    right: 20px;
+    cursor:pointer;
+    color: rgba(102, 102, 102,0.7);
+}
+
+.signin_input_area_title_area__close::after{
+    display: inline-block;
+    font-size: 30px;
+    content: "\00d7"; /* This will render the 'X' */
+  }
+
+.signin_input_area__EmailInput{
+    display: flex;
+    width: 300px;
+    height: 47px;
+    font-weight: bold;
+    font-size: 18px;
+    align-self: center;
+    text-align: start;
+    border-color: rgba(102, 102, 102,0.3);
+    border-radius:5px;
+    border-style: solid;
+    border-width: 1px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    outline: none;
+    position: relative;
+    top:10px;
+}
+
+.signin_input_area__EmailInput::placeholder {
+    color: rgba(102, 102, 102,0.3);
+}
+
+.signin_input_area__PasswordInput{
+    display: flex;
+    width: 300px;
+    height: 47px;
+    font-weight: bold;
+    font-size: 18px;
+    align-self: center;
+    text-align: start;
+    border-color: rgba(102, 102, 102,0.3);
+    border-radius:5px;
+    border-style: solid;
+    border-width: 1px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    outline: none;
+    position: relative;
+    top:20px;
+}
+.signin_input_area__PasswordInput::placeholder {
+    color: rgba(102, 102, 102,0.3);
+}
+
+.signin_input_area__signinButt{
+    width: 300px;
+    height: 47px;
+    border-radius:5px;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+
+    background-color: rgb(68, 136, 153);
+    align-self: center;
+    position: relative;
+    top:30px;
+}
+
+.signin_input_area__SignupText{
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(102, 102, 102);
+    align-self: center;
+    position: relative;
+    top:40px;
+    cursor:pointer;
+}
+
+.signin_singup_state{
+    display: flex;
+    height: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(102, 102, 102);
+    align-self: center;
+    position: relative;
+    top:45px;
+    cursor:pointer;
+    color: red;
+}
+
+/* 註冊 */
+.signup_enter{
+    display: flex;
+    width: 340px;
+    height: auto;
+    min-height: 350px;
+    border-radius:5px;
+    position: fixed;
+    top:20%;
+    z-index: 1;
+    background-color: white;
+    flex-direction: column;
+    justify-content: start;
+    align-content: center;
+}
+
+.signup_input_area__NameInput{
+    display: flex;
+    width: 300px;
+    height: 47px;
+    font-weight: bold;
+    font-size: 18px;
+    align-self: center;
+    text-align: start;
+    border-color: rgba(102, 102, 102,0.3);
+    border-radius:5px;
+    border-style: solid;
+    border-width: 1px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    outline: none;
+    position: relative;
+    top:10px;
+}
+
+.signup_input_area__NameInput::placeholder {
+    color: rgba(102, 102, 102,0.3);
+}
+
+.signup_input_area__EmailInput{
+    display: flex;
+    width: 300px;
+    height: 47px;
+    font-weight: bold;
+    font-size: 18px;
+    align-self: center;
+    text-align: start;
+    border-color: rgba(102, 102, 102,0.3);
+    border-radius:5px;
+    border-style: solid;
+    border-width: 1px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    outline: none;
+    position: relative;
+    top:20px;
+}
+
+.signup_input_area__EmailInput::placeholder {
+    color: rgba(102, 102, 102,0.3);
+}
+
+
+
+.signup_input_area__PasswordInput{
+    display: flex;
+    width: 300px;
+    height: 47px;
+    font-weight: bold;
+    font-size: 18px;
+    align-self: center;
+    text-align: start;
+    border-color: rgba(102, 102, 102,0.3);
+    border-radius:5px;
+    border-style: solid;
+    border-width: 1px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    outline: none;
+    position: relative;
+    top:30px;
+}
+.signup_input_area__PasswordInput::placeholder {
+    color: rgba(102, 102, 102,0.3);
+}
+
+.signup_input_area__signinButt{
+    width: 300px;
+    height: 47px;
+    border-radius:5px;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: rgb(68, 136, 153);
+    align-self: center;
+    position: relative;
+    top:40px;
+}
+
+.signup_input_area__SignupText{
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(102, 102, 102);
+    align-self: center;
+    position: relative;
+    top:50px;
+    cursor:pointer;
+}
+
+.signup_singup_state{
+    display: flex;
+    height: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(102, 102, 102);
+    align-self: center;
+    position: relative;
+    top:60px;
+    cursor:pointer;
+    color: red;
+}
 
 
 
 
-/* RWD */
+
+/* --------------------------RWD --------------------------*/
 /* 手機 */
 @media(max-width: 360px){
     .body{
@@ -345,6 +641,7 @@
         position:fixed;
         background-color: rgb(255, 255, 255);
         margin-bottom: 10px;
+        box-sizing: border-box;
     }
 
     .Navigation_Bar__LeftText{
@@ -354,6 +651,7 @@
         font-weight: bold;
         width: 50%;
         align-items: center;
+        cursor:pointer;
     }
     
     .Navigation_BarRigh{
@@ -366,74 +664,109 @@
         gap: 20px;
         font-size: 15px;
         font-weight: bold;
+        cursor:pointer;
     }
 
     .Hero_selction{
         height: 350px;
         width: 100%;
+        max-width: none;
+        min-width: none;
     }
     .Hero_selction__img{
         display: flex;
         background-image: url("./img/welcome.png");
-        background-position: top;
         background-size:cover;
-        background-repeat:no-repeat;
-        width: 100%;
-        justify-content: center; 
+        background-attachment: scroll;
+        width: auto;
+        max-width: none;
+        min-width: none;
+        height: 350px;
     }
     
     .slogan{
         display: flex;
-        position: relative;
-        left: 10px;
-        height: 170px;
         width: 100%;
+        max-width: none;
+        min-width: none;
         align-self: center;
         flex-direction: column;
         gap: 25px;
         justify-content: start;
-
+        padding-left: 10px;
+        box-sizing: border-box;
     }
     
     .slogan_title{
-        font-size: 24px;
+        max-width: 340px;
+        font-size: 28px;
         font-weight: bold;
         color: rgb(255, 255, 255);
-    }
-    .slogan_content{
-        font-size: 16px;
-        font-weight: bold;
-        color: rgb(255, 255, 255);
+        white-space: nowrap;
     }
     
+    .slogan_content{
+        font-size: 18px;
+        font-weight: bold;
+        color: rgb(255, 255, 255);
+        white-space: nowrap;
+        max-width: 340px;
 
+    }
+    
     .search_area{
         display: flex;
-        justify-content: start;
+        align-items: center;
+        width: 94%;
+        max-width: 340px;
     }
     
     .search_input{
         height: 45px;
-        width: 250px;
-        font-size: 20px;
+        max-width: 340px;
+        font-size: 18px;
         border-radius:5px 0 0 5px;
         border: none;
         outline: none;
     }
-
+    
+    .search_but{
+        background-image: url("./img/icon_search.png");
+        background-size:contain;
+        background-repeat:no-repeat;
+        background-position: center;
+        background-size: 25px 25px;
+        height: 47px;
+        max-width: 340px;
+        min-width: 50px;
+        width: 50px;
+        border-radius:0 5px 5px 0;
+        border: none;
+        outline: none;
+        background-color: rgb(68, 136, 153);
+        box-sizing: border-box;
+    }
+    
+    .space{
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-width: none;
+    }
 
     .list_bar{
         display: flex;
-        width: 100%;
         height: 70px;
+        width: 100%;
+        min-width: none;
         background-color: rgb(255, 255, 255);
-        align-items: center;
-        justify-self: center;
+        justify-content: center;
     }
     
     .list_bar_left_but{
-        width: 30px;
-        height: 30px;
+        width: 24px;
+        height: 24px;
         background-color: rgb(255, 255, 255);
         background-image: url("./img/Default_left.png");
         background-size:contain;
@@ -443,27 +776,34 @@
     }
     
     .list_bar_right_but{
-        width: 30px;
-        height: 30px;
+        width: 24px;
+        height: 24px;
         background-color: rgb(255, 255, 255);
         background-image: url("./img/Default_right.png");
         background-size:contain;
         background-repeat:no-repeat;
         background-position: center;
         border: none;
-        justify-content: space-between;
     }
     
     .list_bar_contant{
         display:flex;
         height: 70px;
         width: 80%;
+        min-width: none;
         align-items: center;
         flex-wrap: nowrap;
+        /* margin-right: 100px; */
+        justify-content: center;
+        overflow:hidden;
+    
     }
     
     .list_bar_inner_content{
+        /*隨容器填滿*/
         height: auto;
+        width: auto;
+        min-width: none;
         display: flex;
         flex-grow: 1;
         margin-left: 10px;
@@ -473,45 +813,61 @@
         gap:20px;
         flex-wrap: nowrap;
         overflow-x: scroll;
+        box-sizing: border-box;
     }
     
-    /* 去掉滾輪樣式 */
     .list_bar_inner_content::-webkit-scrollbar {
         display: none
+    }
+    
+    .list_bar_inner_content_mrt{
+        width: auto;
+        min-width: none;
+        flex-grow: 1;
+        white-space: nowrap;
+        color: gray;
+        font-weight: bold;
+        /* 這邊做移動 */
     }
     
     .attraction_area{
         display: flex;
         width: 100%;
-        position: relative;
-        right: 10px;
-        left: 10px;
+        min-width: none;
+        justify-content: center;
+    
     }
-
+    
     .attraction_area_content{
-        width: 100%;
+        display: flex;
+        min-width: none;
         height: auto;
         background-color: rgb(255, 255, 255);
-        display: flex;
-        justify-content: center;
-
+        /* flex-grow: 1; */
+        flex-wrap: wrap;
+        /* justify-content:start; */
     }
-
+    
     .attraction_area_box{
-        width: 100%;
+        display: flex;
+        width:100%;
         height: 265px;
         align-content: center;
+        flex-wrap: wrap;
+        flex-grow: 1;
+        justify-content: center;
     }
-
+    
     .attraction_area_box_item{
         display: flex;
-        width: 100%;
+        width: 90%;
         height: auto;
         justify-self:center;
         align-items: end;
         flex-direction: column;
         box-shadow:  0.5px 0.5px 3px rgb(205, 205, 205);
         border-radius:5px 5px 5px 5px;
+        
     }
     
     .attraction_area_box_item_img{
@@ -530,6 +886,7 @@
         text-indent:10px;
         font-size: 20px;
         color: white;
+    
         background-size: cover;
         align-items: center;
         white-space: nowrap;
@@ -545,6 +902,50 @@
         align-items: center;
         border-radius:0 0 5px 5px;
         background-color:white;
+    }
+    
+    .attraction_area_box_item_text_box_name_mrt{
+        display: flex;
+        align-items: center;
+        width: 135px;
+        height: 45px;
+        font-size: 15px;
+        margin-left: 10px;
+        box-sizing: border-box;
+        font-weight: bold;
+        color: gray;
+    }
+    
+    .attraction_area_box_item_text_box_name_class{
+        display: flex;
+        align-items: center;
+        width: 135px;
+        height: 45px;
+        font-size: 15px;
+        font-weight: bold;
+        color: gray;
+        align-self: center;
+        justify-content: end;
+        margin-right: 10px;
+        box-sizing: border-box;
+    }
+    
+    
+    
+    .test{
+        height: 900px;
+        background-color: aquamarine;
+    }
+    
+    .signin_table_background{
+        display: flex;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        z-index: 1;
+        justify-content: center;
+        align-items: center;
+        background-color:rgba(102, 102, 102, 0.5);
     }
 
 
