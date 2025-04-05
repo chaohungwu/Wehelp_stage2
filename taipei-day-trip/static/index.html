@@ -105,7 +105,7 @@
   function list_bar_right_but_click(){
     let body_dom = document.querySelector(".body");
     let body_dom_width = body_dom.offsetWidth;
-    console.log(body_dom_width)
+    // console.log(body_dom_width)
     let max_width;
 
     if(body_dom_width<360){
@@ -132,6 +132,7 @@
             }).then(function(data){
               let mrt_data = data['data'];
               // console.log(mrt_data)
+
               for(let i=0;i< mrt_data.length; i++){
                 // console.log(mrt_data[i])
                 let mrt_box_dom = document.createElement("div");

@@ -280,8 +280,8 @@ def get_mrt_info():
 
 		# sql = "SELECT COUNT(MRT) MRT FROM taipei_attractions ;" #找所有景點的MRT
 		# sql = "SELECT DISTINCT MRT FROM taipei_attractions"
-		sql = "select MRT,count(*) as count from taipei_attractions group by MRT order by count desc;"
-		cursor.execute(sql,)
+		sql = "select MRT, count(*) as count from taipei_attractions group by MRT order by count desc;"
+		cursor.execute(sql)
 		db_results = cursor.fetchall()
 		cursor.close()
 		connection.close() # return connection to the pool.
@@ -295,7 +295,8 @@ def get_mrt_info():
 
 		return {"data":all_att_mrt_name_list}
 
-	except:
+	except Exception as e:
+		print(e)
 		raise HTTPException(status_code=500, detail={"error":True, "message":"伺服器內部錯誤"})
 
 
@@ -324,6 +325,7 @@ async def user(request: Request, body = Body(None)):
 		cursor.execute(db_sql,(new_user_email,))#依據頁數查詢資料
 		search_count = cursor.fetchall()
 		cursor.close()
+		connection.close()
 
 		count = search_count[0][0]
 		
@@ -347,6 +349,7 @@ async def user(request: Request, body = Body(None)):
 			cursor.execute(db_sql, add_data)
 			connection.commit()
 			cursor.close()
+			connection.close()
 
 			return {"ok": True} #註冊成功
 		
@@ -417,7 +420,7 @@ async def user_signin(request: Request, body = Body(None)):
 	cursor.execute(db_sql,(user_email,))#依據頁數查詢資料
 	search_results = cursor.fetchall()
 	cursor.close()
-
+	connection.close()
 
 
 	#1. 確認密碼是不是正確的
