@@ -242,7 +242,7 @@ async function signin(){
           document.querySelector('.signin_singup_state').textContent = `登入成功`
           document.querySelector('.signin_enter').style.height='300px'
   
-          setTimeout("window.location.href = `/`",1000)
+          setTimeout("window.location.reload();",1000)
           // alert('登入成功');
           // window.location.href = `/`
   
@@ -279,8 +279,11 @@ async function signin_license_check(){
                 // sessionStorage.clear('token')
                 localStorage.clear('token')
 
-                alert("登出成功")
-                window.location.href = `/`
+
+                // alert("登出成功")
+                window.location.reload();
+
+                // window.location.href = `/`
                 })
             }
           })
