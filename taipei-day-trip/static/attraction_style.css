@@ -13,7 +13,7 @@
     position:fixed;
     background-color: rgb(255, 255, 255);
     margin-bottom: 10px;
-    z-index: 1;
+    /* z-index: 1; */
     border-bottom: 1px solid rgba(192, 192, 192, 0.3);
 }
 
@@ -30,6 +30,7 @@
     width: auto;
     align-items: center;
     flex-wrap: nowrap;
+    cursor:pointer;
 }
 
 .Navigation_BarRigh{
@@ -40,6 +41,7 @@
     gap: 20px;
     font-size: 15px;
     font-weight: bold;
+    cursor:pointer;
 }
 
 .Navigation_Bar__LeftText--color{
@@ -385,9 +387,6 @@ opacity: 1;
     font-weight: bold;
 }
 
-
-
-
 .attraction_content_right_booking_area_but_area{
     display: flex;
     width: 100%;
@@ -617,6 +616,308 @@ opacity: 1;
     border: 2px solid white
 }
 
+
+
+
+.signin_table_background{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    justify-content: center;
+    align-items: center;
+    background-color:rgba(102, 102, 102, 0.5);
+}
+
+
+
+/* 嘗試使用BEM方式 */
+.signin_enter{
+    display: flex;
+    width: 340px;
+    height: auto;
+    min-height: 275px;
+    border-radius:5px;
+    position: fixed;
+    top:20%;
+    z-index: 1;
+    background-color: white;
+    flex-direction: column;
+    justify-content: start;
+    align-content: center;
+}
+
+.signin_enter__top{
+    display: block;
+    width: 100%;
+    height: 10px;
+    border-radius:5px 5px 0px 0px;
+}
+
+.signin_enter__top--coler1{
+    background-color: rgb(66, 134, 151);
+}
+
+.signin_input_area{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+}
+
+.signin_input_area_title_area{
+    display: flex;
+    width: 100%;
+    height: auto;
+}
+
+.signin_input_area_title_area__title{
+    display: block;
+    width: 100%;
+    height: auto;
+    font-weight: bolder;
+    font-size: 25px;
+    text-align: center;
+    padding-top: 17px;
+    padding-left: 30px;
+    box-sizing: border-box;
+}
+.signin_input_area_title_area__title--fontcoler1{
+    color: rgb(102, 102, 102);
+}
+
+.signin_input_area_title_area__close{
+    display: block;
+    width: 30px;
+    height: 30px;
+    font-weight: bold;
+    font-size: 25px;
+    text-align: center;
+    /* background-image: url('./img/close_but.png'); */
+    
+    background-size: cover;
+    box-sizing: border-box;
+    position: relative;
+    top: 15px;
+    right: 20px;
+    cursor:pointer;
+    color: rgba(102, 102, 102,0.7);
+}
+
+.signin_input_area_title_area__close::after{
+    display: inline-block;
+    font-size: 30px;
+    content: "\00d7"; /* This will render the 'X' */
+  }
+
+.signin_input_area__EmailInput{
+    display: flex;
+    width: 300px;
+    height: 47px;
+    font-weight: bold;
+    font-size: 18px;
+    align-self: center;
+    text-align: start;
+    border-color: rgba(102, 102, 102,0.3);
+    border-radius:5px;
+    border-style: solid;
+    border-width: 1px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    outline: none;
+    position: relative;
+    top:10px;
+}
+
+.signin_input_area__EmailInput::placeholder {
+    color: rgba(102, 102, 102,0.3);
+}
+
+.signin_input_area__PasswordInput{
+    display: flex;
+    width: 300px;
+    height: 47px;
+    font-weight: bold;
+    font-size: 18px;
+    align-self: center;
+    text-align: start;
+    border-color: rgba(102, 102, 102,0.3);
+    border-radius:5px;
+    border-style: solid;
+    border-width: 1px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    outline: none;
+    position: relative;
+    top:20px;
+}
+.signin_input_area__PasswordInput::placeholder {
+    color: rgba(102, 102, 102,0.3);
+}
+
+.signin_input_area__signinButt{
+    width: 300px;
+    height: 47px;
+    border-radius:5px;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+
+    background-color: rgb(68, 136, 153);
+    align-self: center;
+    position: relative;
+    top:30px;
+}
+
+.signin_input_area__SignupText{
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(102, 102, 102);
+    align-self: center;
+    position: relative;
+    top:40px;
+    cursor:pointer;
+}
+
+.signin_singup_state{
+    display: flex;
+    height: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(102, 102, 102);
+    align-self: center;
+    position: relative;
+    top:45px;
+    cursor:pointer;
+    color: red;
+}
+
+/* 註冊 */
+.signup_enter{
+    display: flex;
+    width: 340px;
+    height: auto;
+    min-height: 350px;
+    border-radius:5px;
+    position: fixed;
+    top:20%;
+    z-index: 1;
+    background-color: white;
+    flex-direction: column;
+    justify-content: start;
+    align-content: center;
+}
+
+.signup_input_area__NameInput{
+    display: flex;
+    width: 300px;
+    height: 47px;
+    font-weight: bold;
+    font-size: 18px;
+    align-self: center;
+    text-align: start;
+    border-color: rgba(102, 102, 102,0.3);
+    border-radius:5px;
+    border-style: solid;
+    border-width: 1px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    outline: none;
+    position: relative;
+    top:10px;
+}
+
+.signup_input_area__NameInput::placeholder {
+    color: rgba(102, 102, 102,0.3);
+}
+
+.signup_input_area__EmailInput{
+    display: flex;
+    width: 300px;
+    height: 47px;
+    font-weight: bold;
+    font-size: 18px;
+    align-self: center;
+    text-align: start;
+    border-color: rgba(102, 102, 102,0.3);
+    border-radius:5px;
+    border-style: solid;
+    border-width: 1px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    outline: none;
+    position: relative;
+    top:20px;
+}
+
+.signup_input_area__EmailInput::placeholder {
+    color: rgba(102, 102, 102,0.3);
+}
+
+
+
+.signup_input_area__PasswordInput{
+    display: flex;
+    width: 300px;
+    height: 47px;
+    font-weight: bold;
+    font-size: 18px;
+    align-self: center;
+    text-align: start;
+    border-color: rgba(102, 102, 102,0.3);
+    border-radius:5px;
+    border-style: solid;
+    border-width: 1px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    outline: none;
+    position: relative;
+    top:30px;
+}
+.signup_input_area__PasswordInput::placeholder {
+    color: rgba(102, 102, 102,0.3);
+}
+
+.signup_input_area__signinButt{
+    width: 300px;
+    height: 47px;
+    border-radius:5px;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: rgb(68, 136, 153);
+    align-self: center;
+    position: relative;
+    top:40px;
+}
+
+.signup_input_area__SignupText{
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(102, 102, 102);
+    align-self: center;
+    position: relative;
+    top:50px;
+    cursor:pointer;
+}
+
+.signup_singup_state{
+    display: flex;
+    height: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(102, 102, 102);
+    align-self: center;
+    position: relative;
+    top:60px;
+    cursor:pointer;
+    color: red;
+}
 
 
 
@@ -862,7 +1163,6 @@ opacity: 1;
         box-sizing: border-box;
         padding-left: 10px;
         padding-right: 10px;
-
     }
 
 

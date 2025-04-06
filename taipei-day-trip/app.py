@@ -2,21 +2,43 @@ from fastapi import *
 from typing import Annotated
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
-import json
-from fastapi.responses import HTMLResponse
+from fastapi.security import OAuth2PasswordBearer
 
-app=FastAPI()
+import json
+from fastapi.responses import HTMLResponse, JSONResponse
 
 import mysql.connector
 from mysql.connector import pooling
 
+import jwt
+import time
+import datetime
+from passlib.context import CryptContext
+import os
+from dotenv import load_dotenv ,find_dotenv
+
+# 載入 .env 檔案
+load_dotenv()
+# print(os.environ)
+# env_path = find_dotenv()
+# print(f"找到 .env 檔案: {env_path}")  # 應該會印出 .env 的路徑
+
+load_dotenv(dotenv_path="/.env")
+
+# # 讀取環境變數
+db_name = os.getenv("db_name")
+db_user = os.getenv("db_user")
+db_password = os.getenv("db_password")
+
+app=FastAPI()
+
 dbconfig = {
-    "database": "wehelp_stage2_DB",
-    "user": "root",
-    "password": "12345678",
+    "database": db_name,
+    "user": db_user,
+    "password": db_password,
     "host": "localhost",
     # "port": "8080"
-}
+	}
 
 pool = mysql.connector.pooling.MySQLConnectionPool(pool_name="wehelp_stage2_DB_pool",
                                                     pool_size=5,
@@ -272,8 +294,8 @@ def get_mrt_info():
 
 		# sql = "SELECT COUNT(MRT) MRT FROM taipei_attractions ;" #找所有景點的MRT
 		# sql = "SELECT DISTINCT MRT FROM taipei_attractions"
-		sql = "select MRT,count(*) as count from taipei_attractions group by MRT order by count desc;"
-		cursor.execute(sql,)
+		sql = "select MRT, count(*) as count from taipei_attractions group by MRT order by count desc;"
+		cursor.execute(sql)
 		db_results = cursor.fetchall()
 		cursor.close()
 		connection.close() # return connection to the pool.
@@ -287,13 +309,178 @@ def get_mrt_info():
 
 		return {"data":all_att_mrt_name_list}
 
-	except:
+	except Exception as e:
+		print(e)
 		raise HTTPException(status_code=500, detail={"error":True, "message":"伺服器內部錯誤"})
 
 
-# @app.get("/attraction/{id}", include_in_schema=False)
-# async def attraction(request: Request, id: int):
-# 	return FileResponse("./static/attraction.html", media_type="text/html")
+
+
+
+"""
+註冊一個新的會員
+200:註冊成功
+202:註冊失敗
+500:伺服器內部錯誤
+"""
+@app.post("/api/user", include_in_schema=False)
+async def user(request: Request, body = Body(None)):
+	try:
+		data = json.loads(body)
+		new_user_name = data["name"]
+		new_user_email = data["email"]
+		new_user_password = data["password"]
+
+		connection = pool.get_connection()
+		cursor = connection.cursor()
+
+		#查是否已經有相同mail
+		db_sql = "SELECT COUNT(*) FROM member WHERE member_email = %s;"
+		cursor.execute(db_sql,(new_user_email,))#依據頁數查詢資料
+		search_count = cursor.fetchall()
+		cursor.close()
+		connection.close()
+
+		count = search_count[0][0]
+		
+		# 如果沒有找到相同的，就建立
+		if count==0:
+			print("222")
+			print(new_user_password)
+
+			# 密碼做哈希編碼
+			try:
+				pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+				new_user_password_hash = pwd_context.hash(new_user_password)	
+				print("333")
+			except Exception as e:
+				print(e)
+
+			connection = pool.get_connection()
+			cursor = connection.cursor()
+			db_sql = "insert into member (member_name, member_email, member_password, member_hash_password) values (%s,%s,%s,%s);"
+			add_data = (new_user_name, new_user_email, new_user_password, new_user_password_hash)
+			cursor.execute(db_sql, add_data)
+			connection.commit()
+			cursor.close()
+			connection.close()
+
+			return {"ok": True} #註冊成功
+		
+		else:
+			#回傳錯誤訊息
+			return JSONResponse(content={"error": True, "message": "系統中已存在該Email"}, status_code=400)
+		
+	except:
+		# 500:伺服器內部錯誤(中斷)
+		raise HTTPException(status_code=500, detail={"error":True, "message":"伺服器內部錯誤"})
+
+
+
+"""
+取得當前登入的會員資訊
+200: 註冊成功
+400: 註冊失敗
+500: 伺服器內部錯誤
+# """
+# oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+# secret_key = "12345678"
+# algorithm = "HS256"
+secret_key = os.getenv("secret_key")
+algorithm = os.getenv("algorithm")
+
+
+@app.get("/api/auth", include_in_schema=False)
+# async def decode_user_signin_info(token: str = Depends(oauth2_scheme)):
+async def decode_user_signin_info(Authorization: str = Header(None)):
+	#解碼
+	Authorization_splite = Authorization.split()
+	token = Authorization_splite[1]
+	try:
+		decoded_jwt = jwt.decode(token, secret_key, algorithms=[algorithm])
+		print(decoded_jwt)
+		print(type(decoded_jwt))
+		print(decoded_jwt['email'])
+		user_signin_info={
+			"id":decoded_jwt['id'],
+			"name":decoded_jwt['name'],
+			"email":decoded_jwt['email'],
+			}
+		return{"data":user_signin_info}
+	
+	except:
+		return{"data":None}
+
+
+
+"""
+登入會員帳戶，取得token
+200: 登入成功，取得有效期為七天的 JWT 加密字串
+400: 登入失敗，帳號或密碼錯誤或其他原因
+500: 伺服器內部錯誤
+"""
+@app.put("/api/auth", include_in_schema=False)
+async def user_signin(request: Request, body = Body(None)):
+	# data = json.loads(body) 
+	# print(body)
+	# print(type(body))
+	# print(data["password"])
+	#連到資料庫連接池
+	user_email = body['email']
+	user_password = body['password']
+
+	connection = pool.get_connection()
+	cursor = connection.cursor()
+
+	#搜尋db密碼是不是正確
+	db_sql = "select id, member_name, member_email, member_password , member_hash_password from member where member_email = %s;"
+	cursor.execute(db_sql,(user_email,))#依據頁數查詢資料
+	search_results = cursor.fetchall()
+	cursor.close()
+	connection.close()
+
+
+	#1. 確認密碼是不是正確的
+	#2. 如果正確，利用JWT去產生回傳提供TOKEN
+	#3. 如果失敗就回傳失敗訊息
+	try:
+		#1.沒查到該email
+		if len(search_results)==0:
+			return JSONResponse(content={"error": True, "message": "無此email"}, status_code=400)
+		
+		else:
+			# 確認做完哈希的密碼
+			pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+			
+			var_hash_password = pwd_context.verify(user_password, search_results[0][4])
+		
+
+		#2.登入成功，取得token
+			try:
+				if user_email == search_results[0][2] and var_hash_password:
+					payload = {
+								'id': search_results[0][0],
+								'name': search_results[0][1],
+								'email': search_results[0][2],
+								"exp": datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(seconds=3600*7)
+								#'exp': 1743580563  # 過期時間 (Unix timestamp)
+								}
+					
+					#編碼
+					encoded_jwt = jwt.encode(payload, secret_key, algorithm=algorithm)
+					# print(encoded_jwt)
+					return {"token": encoded_jwt}
+				
+								#3.密碼錯誤
+				else:
+					return JSONResponse(content={"error": True, "message": "密碼錯誤"}, status_code=400)
+
+			except Exception as e:
+				print(e)
+
+	except:
+		raise HTTPException(status_code=500, detail={"error":True, "message":"伺服器內部錯誤"})
+
 
 
 
