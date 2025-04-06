@@ -82,7 +82,6 @@ async function signin_enter(){
     signin_table_dom = document.createElement('div');
     signin_table_dom.className = 'signin_singup_state';
   
-  
     document.querySelector('.signin_input_area').appendChild(signin_table_dom);
   
   
@@ -278,11 +277,11 @@ async function signin_license_check(){
               singin_dom.addEventListener('click', () => {
                 // sessionStorage.clear('token')
                 localStorage.clear('token')
+                // document.querySelector('.signin_table_background').style.display='none'
+                document.querySelector('.signin_table_background').remove()
 
-
-                // alert("登出成功")
-                window.location.reload();
-
+                window.location.reload(true);
+                // window.location=location
                 // window.location.href = `/`
                 })
             }

@@ -14,18 +14,32 @@ import jwt
 import time
 import datetime
 from passlib.context import CryptContext
+import os
+from dotenv import load_dotenv ,find_dotenv
 
+# 載入 .env 檔案
+load_dotenv()
+# print(os.environ)
+# env_path = find_dotenv()
+# print(f"找到 .env 檔案: {env_path}")  # 應該會印出 .env 的路徑
 
+load_dotenv(dotenv_path="/.env")
+
+# # 讀取環境變數
+db_name = os.getenv("db_name")
+db_user = os.getenv("db_user")
+db_password = os.getenv("db_password")
 
 app=FastAPI()
 
 dbconfig = {
-    "database": "wehelp_stage2_DB",
-    "user": "root",
-    "password": "12345678",
+    "database": db_name,
+    "user": db_user,
+    "password": db_password,
     "host": "localhost",
     # "port": "8080"
-}
+	}
+
 pool = mysql.connector.pooling.MySQLConnectionPool(pool_name="wehelp_stage2_DB_pool",
                                                     pool_size=5,
                                                     pool_reset_session=True,
@@ -370,8 +384,11 @@ async def user(request: Request, body = Body(None)):
 500: 伺服器內部錯誤
 # """
 # oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
-secret_key = "12345678"
-algorithm = "HS256"
+# secret_key = "12345678"
+# algorithm = "HS256"
+secret_key = os.getenv("secret_key")
+algorithm = os.getenv("algorithm")
+
 
 @app.get("/api/auth", include_in_schema=False)
 # async def decode_user_signin_info(token: str = Depends(oauth2_scheme)):
