@@ -4,8 +4,176 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Booking</title>
+  <link href='https://fonts.googleapis.com/css?family=Noto Sans TC' rel='stylesheet'>
+  <link rel="stylesheet" type="text/css" href="booking_style.css"/>
+  <script defer src="/js/singin_auth.js"> </script>
+  <script defer src="/js/booking_function.js"> </script>
+  <script defer src="/js/booking_view.js"> </script>
+
+
 </head>
-<body>
+
+<body class="body">
+  <div class="Navigation">
+    <div class="Navigation_Bar" >
+      <div class="Navigation_Bar Navigation_Bar__LeftText Navigation_Bar__LeftText--color" onclick=home_page()>台北一日遊</div>
+      <div class="Navigation_BarRigh">
+        <span class="Navigation_Bar__RightText Navigation_Bar__RightText--color" onclick = booking_page()>預定行程</span>
+        <span class="Navigation_Bar__RightText Navigation_Bar__RightText--color" id='singin_enter'  onclick=signin_enter() ></span>
+      </div>
+    </div>
+  </div>
+  <div style="height: 45px;"></div>
+
+
+  <div class="booking_contain">
+    <div style="display: flex; width: 100%; justify-content: center;" id="user_booking_title_contain">
+      <div class="booking_contain_attraction__title booking_contain_attraction__title--color1" id="welcome_title">您好，待預定的行程如下：</div>
+    </div>
+
+    <div class="booking_contain_attraction_content">
+      
+      <div class="booking_contain_attraction_content_info">
+        <div class="booking_contain_attraction_content__img"></div>
+
+        <div class="info_group">
+
+          <div class="booking_contain_attraction_content_info booking_contain_attraction_content_info__title booking_contain_attraction_content_info__title--color1" id='booking_att_name'>台北一日遊：景點名稱</div>
+          <div class="booking_contain_attraction_content_info__date_contain">
+            <div class="booking_contain_attraction_content_info__date_contain booking_contain_attraction_content_info__date_contain_title">日期：</div>
+            <div class="booking_contain_attraction_content_info__date_contain booking_contain_attraction_content_info__date_contain_text" id='booking_date'>這邊收訊息帶入</div>
+          </div>
+
+          <div class="booking_contain_attraction_content_info_OtherContain">
+            <div class="booking_contain_attraction_content_info_OtherContain booking_contain_attraction_content_info_OtherContain__TimeTitle">時間：</div>
+            <div class="booking_contain_attraction_content_info_OtherContain booking_contain_attraction_content_info_OtherContain__TimeText" id='booking_time'>這邊收訊息帶入</div>
+          </div>
+
+          <div class="booking_contain_attraction_content_info_OtherContain">
+            <div class="booking_contain_attraction_content_info_OtherContain booking_contain_attraction_content_info_OtherContain__PriceTitle">費用：</div>
+            <div class="booking_contain_attraction_content_info_OtherContain booking_contain_attraction_content_info_OtherContain__PriceText" id='booking_price'>這邊收訊息帶入</div>
+          </div>        
+
+          <div class="booking_contain_attraction_content_info_OtherContain">
+            <div class="booking_contain_attraction_content_info_OtherContain booking_contain_attraction_content_info_OtherContain__AddressTitle">地點：</div>
+            <div class="booking_contain_attraction_content_info_OtherContain booking_contain_attraction_content_info_OtherContain__AddressText" id='booking_address'>這邊收訊息帶入</div>
+          </div>
+
+        </div>
+      </div>
+    
+      <div class="delete_but_contain">
+        <div class="delete_but" onclick = delete_booking()></div>
+      </div>
+    </div>
+    </div>
+  </div>
   
+
+  <hr class="hr_style"/>
+
+
+  <div class="booking_contain_contact">
+    <div class="booking_contain_contact_title">您的聯絡資訊</div>
+    <div class="booking_contain_contact_info">
+      <div class="booking_contain_contact_info__Content">
+        <div class="booking_contain_contact_info__ContentTitle">聯絡姓名：</div>
+        <input class="booking_contain_contact_info__Input" id="Name_input">
+      </div>
+
+      <div class="booking_contain_contact_info__Content">
+        <div class="booking_contain_contact_info__ContentTitle">聯絡信箱：</div>
+        <input class="booking_contain_contact_info__Input" id="mail_input">
+      </div>
+
+      <div class="booking_contain_contact_info__Content">
+        <div class="booking_contain_contact_info__ContentTitle">手機號碼：</div>
+        <input class="booking_contain_contact_info__Input" id="phone_input">
+      </div>
+
+      <div class="booking_contain_contact_info__tips">請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。</div>
+    </div>
+  </div>
+
+
+  <hr class="hr_style"/>
+
+
+  <div class="booking_contain_CreditCard">
+    <div class="booking_contain_CreditCard_title">信用卡付款資訊</div>
+    <div class="booking_contain_CreditCard_info">
+      <div class="booking_contain_CreditCard_info__Content">
+        <div class="booking_contain_CreditCard_info__ContentTitle">卡片號碼：</div>
+        <input class="booking_contain_CreditCard_info__Input" id="CreditCard_number_input" placeholder="**** **** **** ****">
+      </div>
+
+      <div class="booking_contain_CreditCard_info__Content">
+        <div class="booking_contain_CreditCard_info__ContentTitle">過期時間：</div>
+        <input class="booking_contain_CreditCard_info__Input" id="CreditCard_time_input" placeholder="MM / YY">
+      </div>
+
+      <div class="booking_contain_CreditCard_info__Content">
+        <div class="booking_contain_CreditCard_info__ContentTitle">驗證密碼：</div>
+        <input class="booking_contain_CreditCard_info__Input" id="CreditCard_cvv_input" placeholder="CVV">
+      </div>
+
+    </div>
+  </div>
+
+
+
+  <hr class="hr_style"/>
+
+  <div class="sum_booking_info_contain">
+    <div class="sum_booking_info_contain_content">
+      <div class="sum_booking_info_contain_Title">總價：新台幣 xxxx 元</div>
+      <button class="sum_booking_info_contain_BuyButt" onclick=order_build()>確認訂購並付款</button>
+    </div>
+  </div>
+
+
+  <div class="fill_space"></div>
+
+  <div class="footer_contain">
+    <footer class="footer_HomePage">
+      <p>COPYRIGHT © 2021 台北一日遊</p>
+    </footer>
+  </div>
+
+
+
+<script>
+  //回首頁
+  async function home_page(){
+    window.location.href = `/`
+  }
+
+  //預定頁面
+  async function booking_page(){
+  window.location.href = `/booking`
+  }
+
+
+  // 確保在page載入後再做執行取的資訊
+  window.onload = async function get_booking(){
+    let booking_info = await get_booking_info()
+    
+    // 如果在這個頁面登出或是沒有登入進來這個頁面的話就離開回到登入頁面(這邊)
+    if (booking_info['data']['body']!=undefined){
+      // sessionStorage.setItem("singin_enter_autoopen", "true");
+      // signin_enter()
+      window.location.href = "/";
+
+    }else{
+      build_booking_view(booking_info)
+    }
+  }
+
+
+
+
+</script>
+
+
 </body>
-</html>
+</html>  

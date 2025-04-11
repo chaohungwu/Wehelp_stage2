@@ -250,41 +250,36 @@ async function signin(){
   
 //03.登入狀態確認
 async function signin_license_check(){
-  fetch(`/api/auth`,
+  let response = await fetch(`/api/auth`,
         {
           method:'GET',
           headers: {
-          // "Authorization": `Bearer ${sessionStorage.getItem('token')}`
-          // "Authorization": `Bearer ${localStorage.getItem('token')}`
           "Authorization": `Bearer ${localStorage.getItem('token')}`
           }
-        }
-          ).then(function(response){
-          // 產生response物件
-          return response.json();
-          }).then(function(data){
+        })
+          let data = await response.json();
           let user_info = data['data']
 
           // 登入失敗就回到首頁
             if(user_info==null){
               singin_dom = document.querySelector("#singin_enter")
               singin_dom.textContent='登入/註冊'
-            
 
             }else{
+              // 將使用者名稱也存在localstorage(booking頁面使用)
+              localStorage.setItem('user_name', user_info["name"]);
+
               singin_dom = document.querySelector("#singin_enter")
               singin_dom.textContent='登出系統'
               singin_dom.addEventListener('click', () => {
-                // sessionStorage.clear('token')
                 localStorage.clear('token')
-                // document.querySelector('.signin_table_background').style.display='none'
                 document.querySelector('.signin_table_background').remove()
 
-                window.location.reload(true);
-                // window.location=location
-                // window.location.href = `/`
+                window.location.reload();
+
                 })
             }
-          })
+          
+            return user_info
         }
 signin_license_check()
