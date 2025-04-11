@@ -2,32 +2,51 @@
 // 這邊在建立訂單時會將尚未建立的訂單資訊存在session storage
 async function build_booking(){
 
-    let att_id_select = att_id
-    let date_select = document.querySelector(".date_style").value
-    let time = document.querySelectorAll('.radio-input');
+    let response1 = await fetch(`/api/auth`,
+        {
+            method:'GET',
+            headers: {
+            "Authorization": `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+    let data1 = await response1.json();
+    let user_info = data1['data']
+    let aaa = await signin_license_check()
 
-    for(var i = 0; i < time.length; i++){
-    if(time[i].checked){
-        time_id = time[i].id; //選取時間的值
+    // 如果使用者沒有登入，有自動打開登入畫面，就自動打開
+    if(user_info==null){
+        signin_enter()
+
+    }else{
+        
+        let att_id_select = att_id
+        let date_select = document.querySelector(".date_style").value
+        let time = document.querySelectorAll('.radio-input');
+
+        for(var i = 0; i < time.length; i++){
+        if(time[i].checked){
+            time_id = time[i].id; //選取時間的值
+            }
         }
+
+        let response = await fetch("/api/booking",// 要連結的連結
+            {
+                method:"POST",
+                headers:{"Authorization": `Bearer ${localStorage.getItem('token')}`},
+
+                //發送請求到後方並戴上這些json
+                body:JSON.stringify({
+                                    "att_id_select":att_id_select,
+                                    "date_select":date_select,
+                                    "time_id":time_id,
+                                    })
+            });
+
+        let data =await response.json();
+        console.log(data)
+        window.location.href = `/booking`
     }
 
-    let response = await fetch("/api/booking",// 要連結的連結
-        {
-            method:"POST",
-            headers:{"Authorization": `Bearer ${localStorage.getItem('token')}`},
-
-            //發送請求到後方並戴上這些json
-            body:JSON.stringify({
-                                "att_id_select":att_id_select,
-                                "date_select":date_select,
-                                "time_id":time_id,
-                                })
-        });
-
-    let data =await response.json();
-    console.log(data)
-    window.location.href = `/booking`
 }
 
 // 2. 取得使用者預定資訊
