@@ -1,0 +1,1156 @@
+
+
+.body{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.Navigation{
+    display: flex;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 45px;
+    justify-content: center;
+    position:fixed;
+    background-color: rgb(255, 255, 255);
+    margin-bottom: 10px;
+    /* z-index: 1; */
+    border-bottom: 1px solid rgba(192, 192, 192, 0.3);
+}
+
+.Navigation_Bar{
+    display: flex;
+    width: 1200px;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+
+.Navigation_Bar__LeftText{
+    font-size: 25px;
+    font-weight: bold;
+    width: auto;
+    align-items: center;
+    flex-wrap: nowrap;
+    cursor:pointer;
+}
+
+.Navigation_BarRigh{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: auto; 
+    gap: 20px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor:pointer;
+}
+
+.Navigation_Bar__LeftText--color{
+    color: rgb(68, 136, 153);
+}
+
+.Navigation_Bar__RightText--color{
+    color: rgb(120, 120, 120);
+}
+
+
+
+
+/* --------------------登入與註冊頁面 --------------------*/
+.signin_table_background{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    justify-content: center;
+    align-items: center;
+    background-color:rgba(102, 102, 102, 0.5);
+}
+
+.signin_enter{
+    display: flex;
+    width: 340px;
+    height: auto;
+    min-height: 275px;
+    border-radius:5px;
+    position: fixed;
+    top:20%;
+    z-index: 1;
+    background-color: white;
+    flex-direction: column;
+    justify-content: start;
+    align-content: center;
+}
+
+.signin_enter__top{
+    display: block;
+    width: 100%;
+    height: 10px;
+    border-radius:5px 5px 0px 0px;
+}
+
+.signin_enter__top--coler1{
+    background-color: rgb(66, 134, 151);
+}
+
+.signin_input_area{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+}
+
+.signin_input_area_title_area{
+    display: flex;
+    width: 100%;
+    height: auto;
+}
+
+.signin_input_area_title_area__title{
+    display: block;
+    width: 100%;
+    height: auto;
+    font-weight: bolder;
+    font-size: 25px;
+    text-align: center;
+    padding-top: 17px;
+    padding-left: 30px;
+    box-sizing: border-box;
+}
+.signin_input_area_title_area__title--fontcoler1{
+    color: rgb(102, 102, 102);
+}
+
+.signin_input_area_title_area__close{
+    display: block;
+    width: 30px;
+    height: 30px;
+    font-weight: bold;
+    font-size: 25px;
+    text-align: center;
+    /* background-image: url('./img/close_but.png'); */
+    
+    background-size: cover;
+    box-sizing: border-box;
+    position: relative;
+    top: 15px;
+    right: 20px;
+    cursor:pointer;
+    color: rgba(102, 102, 102,0.7);
+}
+
+.signin_input_area_title_area__close::after{
+    display: inline-block;
+    font-size: 30px;
+    content: "\00d7"; /* This will render the 'X' */
+  }
+
+.signin_input_area__EmailInput{
+    display: flex;
+    width: 300px;
+    height: 47px;
+    font-weight: bold;
+    font-size: 18px;
+    align-self: center;
+    text-align: start;
+    border-color: rgba(102, 102, 102,0.3);
+    border-radius:5px;
+    border-style: solid;
+    border-width: 1px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    outline: none;
+    position: relative;
+    top:10px;
+}
+
+.signin_input_area__EmailInput::placeholder {
+    color: rgba(102, 102, 102,0.3);
+}
+
+.signin_input_area__PasswordInput{
+    display: flex;
+    width: 300px;
+    height: 47px;
+    font-weight: bold;
+    font-size: 18px;
+    align-self: center;
+    text-align: start;
+    border-color: rgba(102, 102, 102,0.3);
+    border-radius:5px;
+    border-style: solid;
+    border-width: 1px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    outline: none;
+    position: relative;
+    top:20px;
+}
+.signin_input_area__PasswordInput::placeholder {
+    color: rgba(102, 102, 102,0.3);
+}
+
+.signin_input_area__signinButt{
+    width: 300px;
+    height: 47px;
+    border-radius:5px;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+
+    background-color: rgb(68, 136, 153);
+    align-self: center;
+    position: relative;
+    top:30px;
+}
+
+.signin_input_area__SignupText{
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(102, 102, 102);
+    align-self: center;
+    position: relative;
+    top:40px;
+    cursor:pointer;
+}
+
+.signin_singup_state{
+    display: flex;
+    height: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(102, 102, 102);
+    align-self: center;
+    position: relative;
+    top:45px;
+    cursor:pointer;
+    color: red;
+}
+
+/* 註冊 */
+.signup_enter{
+    display: flex;
+    width: 340px;
+    height: auto;
+    min-height: 350px;
+    border-radius:5px;
+    position: fixed;
+    top:20%;
+    z-index: 1;
+    background-color: white;
+    flex-direction: column;
+    justify-content: start;
+    align-content: center;
+}
+
+.signup_input_area__NameInput{
+    display: flex;
+    width: 300px;
+    height: 47px;
+    font-weight: bold;
+    font-size: 18px;
+    align-self: center;
+    text-align: start;
+    border-color: rgba(102, 102, 102,0.3);
+    border-radius:5px;
+    border-style: solid;
+    border-width: 1px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    outline: none;
+    position: relative;
+    top:10px;
+}
+
+.signup_input_area__NameInput::placeholder {
+    color: rgba(102, 102, 102,0.3);
+}
+
+.signup_input_area__EmailInput{
+    display: flex;
+    width: 300px;
+    height: 47px;
+    font-weight: bold;
+    font-size: 18px;
+    align-self: center;
+    text-align: start;
+    border-color: rgba(102, 102, 102,0.3);
+    border-radius:5px;
+    border-style: solid;
+    border-width: 1px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    outline: none;
+    position: relative;
+    top:20px;
+}
+
+.signup_input_area__EmailInput::placeholder {
+    color: rgba(102, 102, 102,0.3);
+}
+
+
+
+.signup_input_area__PasswordInput{
+    display: flex;
+    width: 300px;
+    height: 47px;
+    font-weight: bold;
+    font-size: 18px;
+    align-self: center;
+    text-align: start;
+    border-color: rgba(102, 102, 102,0.3);
+    border-radius:5px;
+    border-style: solid;
+    border-width: 1px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    outline: none;
+    position: relative;
+    top:30px;
+}
+.signup_input_area__PasswordInput::placeholder {
+    color: rgba(102, 102, 102,0.3);
+}
+
+.signup_input_area__signinButt{
+    width: 300px;
+    height: 47px;
+    border-radius:5px;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: rgb(68, 136, 153);
+    align-self: center;
+    position: relative;
+    top:40px;
+}
+
+.signup_input_area__SignupText{
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(102, 102, 102);
+    align-self: center;
+    position: relative;
+    top:50px;
+    cursor:pointer;
+}
+
+.signup_singup_state{
+    display: flex;
+    height: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(102, 102, 102);
+    align-self: center;
+    position: relative;
+    top:60px;
+    cursor:pointer;
+    color: red;
+}
+
+.fill_space{
+    height: 100px;
+    
+}
+
+.footer_contain{
+    display: flex;
+    height: auto;
+    /* margin-bottom: -875px; */
+}
+
+
+.footer_HomePage{
+    display: flex;
+    height: 60%;
+    width: 100%;
+    font-family: 'Noto Sans TC';
+    color: white;
+    background-color: rgb(117, 117, 117);
+    justify-content: center;
+    /* align-items: center; */
+    /* 設定footer絕對位置在底部 */
+    position:absolute;
+    bottom: 0;
+}
+
+.delete_but_contain{
+    display: flex;
+    height: auto;
+    width:auto;
+    justify-content: end;
+    justify-self: end;
+    justify-items: end;
+    flex-grow: 1;
+    /* align-items: end;
+    align-self: end;
+    align-content: end; */
+
+}
+
+
+.delete_but{
+    display: inline;
+    height: 30px;
+    width: 30px;
+    background-image: url("./img/delete.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    justify-self: end;
+    justify-content: end;
+    justify-items: end;
+}
+
+
+
+/* --------------------預定景點頁面 --------------------*/
+.booking_contain{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+
+.no_booking_title{
+    display: flex;
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: 'Noto Sans TC';
+    /* align-items: center; */
+    color: rgb(102, 102, 102);
+}
+
+
+
+.booking_contain_attraction__title{
+    display: flex;
+    width: 100%;
+    max-width: 1000px;
+    height: 100px;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Noto Sans TC';
+    align-items: center;
+}
+.booking_contain_attraction__title--color1{
+    color: rgb(102, 102, 102);
+}
+
+
+
+.booking_contain_attraction_content{
+    display: none;
+    width: 100%;
+    max-width: 1000px;
+    flex-wrap: wrap ;
+    justify-content: space-between;
+}
+
+.info_group{
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+    white-space:nowrap;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.booking_contain_attraction_content__img{
+    display: flex;
+    width: 250px;
+    height: 200px;
+    background-image: url("./img/welcome.png");
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:cover;
+}
+
+.booking_contain_attraction_content_info{
+    display: flex;
+    width: fit-content;
+    height: auto;
+    flex-wrap: wrap;
+    /* padding-left: 20px; */
+    box-sizing: border-box;
+}
+
+.booking_contain_attraction_content_info__title{
+    display: flex;
+    width: 100%;
+    font-family: 'Noto Sans TC';
+    font-weight: bold;
+    font-size: 18px;
+    padding-left: 20px;
+    padding-bottom: 10px;
+    box-sizing: border-box;
+    flex-wrap: nowrap;
+}
+
+.booking_contain_attraction_content_info__title--color1{
+    color: rgb(68, 136, 153);
+}
+
+
+
+
+.booking_contain_attraction_content_info__date_contain{
+    display: flex;
+    height: fit-content;
+    width: fit-content;
+    flex-wrap: nowrap;
+}
+
+.booking_contain_attraction_content_info__date_contain_title{
+    display: flex;
+    width: auto;
+    font-family: 'Noto Sans TC';
+    font-weight: bold;
+    font-size: 18px;
+    color: rgb(107,107,107);
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+
+.booking_contain_attraction_content_info__date_contain_text{
+    font-family: 'Noto Sans TC';
+    font-size: 18px;
+    color: rgb(107,107,107);
+}
+
+
+.booking_contain_attraction_content_info_OtherContain{
+    display: flex;
+    height: fit-content;
+    width: fit-content;
+}
+.booking_contain_attraction_content_info_OtherContain__TimeTitle{
+    display: flex;
+    width: auto;
+    font-family: 'Noto Sans TC';
+    font-weight: bold;
+    font-size: 18px;
+    color: rgb(107,107,107);
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+.booking_contain_attraction_content_info_OtherContain__TimeText{
+    font-family: 'Noto Sans TC';
+    font-size: 18px;
+    color: rgb(107,107,107);
+}
+
+.booking_contain_attraction_content_info_OtherContain__PriceTitle{
+    display: flex;
+    width: auto;
+    font-family: 'Noto Sans TC';
+    font-weight: bold;
+    font-size: 18px;
+    color: rgb(107,107,107);
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+.booking_contain_attraction_content_info_OtherContain__PriceText{
+    font-family: 'Noto Sans TC';
+    font-size: 18px;
+    color: rgb(107,107,107);
+}.booking_contain_attraction_content_info_OtherContain__AddressTitle{
+    display: flex;
+    width: auto;
+    font-family: 'Noto Sans TC';
+    font-weight: bold;
+    font-size: 18px;
+    color: rgb(107,107,107);
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+
+.booking_contain_attraction_content_info_OtherContain__AddressText{
+    font-family: 'Noto Sans TC';
+    font-size: 18px;
+    color: rgb(107,107,107);
+}
+
+.hr_style {
+    display: none;
+    width: 100%;
+    max-width: 1200px;
+    border: 0;
+    height: 0;
+    margin-top: 50px;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+
+.booking_contain_contact{
+    display: none;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    box-sizing: border-box;
+    gap: 10px;
+    justify-content: center;
+    align-content: center;
+}
+
+.booking_contain_contact_title{
+    display: flex;
+    width: 100%;
+    max-width: 1000px;
+    font-family: 'Noto Sans TC';
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: rgb(107,107,107);
+}
+
+.booking_contain_contact_info{
+    display: flex;
+    width: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    gap: 30px;
+}
+
+.booking_contain_contact_info__Content{
+    display: flex;
+    width: auto;
+    align-content: center;
+}
+
+.booking_contain_contact_info__ContentTitle{
+    display: flex;
+    width: auto;
+    font-family: 'Noto Sans TC';
+    font-size: 18px;
+    color: rgb(107,107,107);
+}
+
+.booking_contain_contact_info__Input{
+    display: flex;
+    width: 200px;
+    height: 26px;
+    font-family: 'Noto Sans TC';
+    border-style: solid;
+    border-radius: 3px;
+    border-color: rgba(107, 107, 107, 0.2);
+    outline: none;
+    align-self: center;
+}
+
+.booking_contain_contact_info__tips{
+    font-family: 'Noto Sans TC';
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(107,107,107);
+}
+
+
+
+/* 信用卡 */
+.booking_contain_CreditCard{
+    display: none;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    box-sizing: border-box;
+    gap: 10px;
+    justify-content: center;
+    align-content: center;
+}
+
+.booking_contain_CreditCard_title{
+    display: flex;
+    width: 100%;
+    max-width: 1000px;
+    font-family: 'Noto Sans TC';
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: rgb(107,107,107);
+}
+
+.booking_contain_CreditCard_info{
+    display: flex;
+    width: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    gap: 30px;
+}
+
+.booking_contain_CreditCard_info__Content{
+    display: flex;
+    width: auto;
+    align-content: center;
+}
+
+.booking_contain_CreditCard_info__ContentTitle{
+    display: flex;
+    width: auto;
+    font-family: 'Noto Sans TC';
+    font-size: 18px;
+    color: rgb(107,107,107);
+}
+
+.booking_contain_CreditCard_info__Input{
+    display: flex;
+    width: 200px;
+    height: 26px;
+    padding-left: 5px;
+    box-sizing: border-box;
+    font-family: 'Noto Sans TC';
+    border-style: solid;
+    border-radius: 3px;
+    border-color: rgba(107, 107, 107, 0.2);
+    outline: none;
+    align-self: center;
+}
+
+
+.sum_booking_info_contain{
+    display: none;
+    height: auto;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-sizing: border-box;
+    justify-content: center;
+}
+.sum_booking_info_contain_content{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1200px;
+    /* justify-items: end; */
+}
+
+.sum_booking_info_contain_Title{
+    display: flex;
+    width: auto;
+    margin-top: 20px;
+    font-family: 'Noto Sans TC';
+    font-weight: bold;
+    color: rgba(107, 107, 107);
+    align-self: end;
+}
+
+.sum_booking_info_contain_BuyButt{
+    width: 170px;
+    height: 36px;
+    color: white;
+    background-color: rgb(66, 134, 151);
+    font-family: 'Noto Sans TC';
+    font-size: 16px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    margin-top: 20px;
+    align-self: end;
+}
+
+
+
+
+/*------------------------- RWD -------------------------*/
+/* 手機 */
+@media(max-width: 360px){
+
+    
+    .delete_but_contain{
+        display: flex;
+        height: auto;
+        width:100%;
+        justify-content: end;
+        justify-self: end;
+        justify-items: end;
+        flex-grow: unset;
+        
+    }
+
+
+    .delete_but{
+        display: inline;
+        height: 30px;
+        width: 30px;
+        background-image: url("./img/delete.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        justify-self: end;
+        justify-content: end;
+        justify-items: end;
+    }
+
+
+
+    .booking_contain{
+        display: flex;
+        height: 100%;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding-left: 10px;
+        box-sizing: border-box;
+
+    }
+    
+    .booking_contain_attraction__title{
+        display: flex;
+        width: 100%;
+        max-width: 1000px;
+        height: 100px;
+        font-size: 18px;
+        font-weight: bold;
+        font-family: 'Noto Sans TC';
+        align-items: center;
+    }
+    .booking_contain_attraction__title--color1{
+        color: rgb(102, 102, 102);
+    }
+    
+    
+    
+    .booking_contain_attraction_content{
+        display: none;
+        width: 100%;
+        /* max-width: 1000px; */
+        flex-wrap: wrap ;
+        padding-right: 10px;
+        box-sizing: border-box;
+        gap: 10px;
+    }
+    
+    .booking_contain_attraction_content__img{
+        display: flex;
+        width: 100%;
+        height: 200px;
+        background-image: url("./img/welcome.png");
+        background-position:center;
+        background-repeat:no-repeat;
+        background-size:cover;
+        flex-grow: 1;
+
+
+    }
+    
+    .booking_contain_attraction_content_info{
+        display: flex;
+        width: 100%;
+        /* min-width: 360px; */
+        height: auto;
+        padding-left: 0px;
+        box-sizing: border-box;
+        gap: 10px;
+        flex-direction: column;
+        
+    }
+    
+    .booking_contain_attraction_content_info__title{
+        display: flex;
+        height: 60px;
+        width: 100%;
+        font-family: 'Noto Sans TC';
+        font-weight: bold;
+        font-size: 18px;
+        padding-bottom: 0px;
+        box-sizing: border-box;
+        justify-content: center;
+    }
+    
+    .booking_contain_attraction_content_info__title--color1{
+        color: rgb(68, 136, 153);
+    }
+    
+    
+    
+    
+    .booking_contain_attraction_content_info__date_contain{
+        display: flex;
+        height: fit-content;
+        width: fit-content;
+    }
+    
+    .booking_contain_attraction_content_info__date_contain_title{
+        display: flex;
+        width: auto;
+        font-family: 'Noto Sans TC';
+        font-weight: bold;
+        font-size: 18px;
+        color: rgb(107,107,107);
+        padding-left: 0px;
+        box-sizing: border-box;
+    }
+    
+    .booking_contain_attraction_content_info__date_contain_text{
+        font-family: 'Noto Sans TC';
+        font-size: 18px;
+        color: rgb(107,107,107);
+    }
+    
+    
+    .booking_contain_attraction_content_info_OtherContain{
+        display: flex;
+        height: fit-content;
+        width: fit-content;
+    }
+    .booking_contain_attraction_content_info_OtherContain__TimeTitle{
+        display: flex;
+        width: auto;
+        font-family: 'Noto Sans TC';
+        font-weight: bold;
+        font-size: 18px;
+        color: rgb(107,107,107);
+        padding-left: 0px;
+        box-sizing: border-box;
+    }
+    .booking_contain_attraction_content_info_OtherContain__TimeText{
+        font-family: 'Noto Sans TC';
+        font-size: 18px;
+        color: rgb(107,107,107);
+    }
+    
+    .booking_contain_attraction_content_info_OtherContain__PriceTitle{
+        display: flex;
+        width: auto;
+        font-family: 'Noto Sans TC';
+        font-weight: bold;
+        font-size: 18px;
+        color: rgb(107,107,107);
+        padding-left: 0px;
+        box-sizing: border-box;
+    }
+    .booking_contain_attraction_content_info_OtherContain__PriceText{
+        font-family: 'Noto Sans TC';
+        font-size: 18px;
+        color: rgb(107,107,107);
+    }.booking_contain_attraction_content_info_OtherContain__AddressTitle{
+        display: flex;
+        width: auto;
+        font-family: 'Noto Sans TC';
+        font-weight: bold;
+        font-size: 18px;
+        color: rgb(107,107,107);
+        padding-left: 0px;
+        box-sizing: border-box;
+    }
+    
+    .booking_contain_attraction_content_info_OtherContain__AddressText{
+        font-family: 'Noto Sans TC';
+        font-size: 18px;
+        color: rgb(107,107,107);
+    }
+    
+    .hr_style {
+        display: none;
+        width: 90%;
+        max-width: 1200px;
+        border: 0;
+        height: 0;
+        margin-top: 50px;
+        box-sizing: border-box;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    
+    .booking_contain_contact{
+        display: none;
+        height: 100%;
+        width: 100%;
+        flex-direction: column;
+        flex-wrap: wrap;
+        margin-top: 40px;
+        padding-left: 10px;
+        padding-right: 10px;
+        box-sizing: border-box;
+        gap: 10px;
+        justify-content: center;
+        align-content: center;
+    }
+    
+    .booking_contain_contact_title{
+        display: flex;
+        width: 100%;
+        max-width: 1000px;
+        font-family: 'Noto Sans TC';
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: rgb(107,107,107);
+    }
+    
+    .booking_contain_contact_info{
+        display: flex;
+        width: auto;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        gap: 30px;
+    }
+    
+    .booking_contain_contact_info__Content{
+        display: flex;
+        width: auto;
+        align-content: center;
+    }
+    
+    .booking_contain_contact_info__ContentTitle{
+        display: flex;
+        width: auto;
+        font-family: 'Noto Sans TC';
+        font-size: 18px;
+        color: rgb(107,107,107);
+    }
+    
+    .booking_contain_contact_info__Input{
+        display: flex;
+        width: 200px;
+        height: 26px;
+        font-family: 'Noto Sans TC';
+        border-style: solid;
+        border-radius: 3px;
+        border-color: rgba(107, 107, 107, 0.2);
+        outline: none;
+        align-self: center;
+    }
+    
+    .booking_contain_contact_info__tips{
+        font-family: 'Noto Sans TC';
+        font-size: 16px;
+        font-weight: bold;
+        color: rgb(107,107,107);
+    }
+    
+    
+    
+    /* 信用卡 */
+    .booking_contain_CreditCard{
+        display: none;
+        height: 100%;
+        width: 100%;
+        flex-direction: column;
+        flex-wrap: wrap;
+        margin-top: 40px;
+        padding-left: 10px;
+        padding-right: 10px;
+        box-sizing: border-box;
+        gap: 10px;
+        justify-content: center;
+        align-content: center;
+    }
+    
+    .booking_contain_CreditCard_title{
+        display: flex;
+        width: 100%;
+        max-width: 1000px;
+        font-family: 'Noto Sans TC';
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: rgb(107,107,107);
+    }
+    
+    .booking_contain_CreditCard_info{
+        display: flex;
+        width: auto;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        gap: 30px;
+    }
+    
+    .booking_contain_CreditCard_info__Content{
+        display: flex;
+        width: auto;
+        align-content: center;
+    }
+    
+    .booking_contain_CreditCard_info__ContentTitle{
+        display: flex;
+        width: auto;
+        font-family: 'Noto Sans TC';
+        font-size: 18px;
+        color: rgb(107,107,107);
+    }
+    
+    .booking_contain_CreditCard_info__Input{
+        display: flex;
+        width: 200px;
+        height: 26px;
+        padding-left: 5px;
+        box-sizing: border-box;
+        font-family: 'Noto Sans TC';
+        border-style: solid;
+        border-radius: 3px;
+        border-color: rgba(107, 107, 107, 0.2);
+        outline: none;
+        align-self: center;
+    }
+
+    
+    .sum_booking_info_contain{
+        display: none;
+        height: auto;
+        width: 100%;
+        padding-left: 10px;
+        padding-right: 10px;
+        box-sizing: border-box;
+        justify-content: center;
+    }
+    .sum_booking_info_contain_content{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 1200px;
+        /* justify-items: end; */
+    }
+    
+    .sum_booking_info_contain_Title{
+        display: flex;
+        width: auto;
+        margin-top: 20px;
+        font-family: 'Noto Sans TC';
+        font-weight: bold;
+        color: rgba(107, 107, 107);
+        align-self: end;
+    }
+    
+    .sum_booking_info_contain_BuyButt{
+        width: 170px;
+        height: 36px;
+        color: white;
+        background-color: rgb(66, 134, 151);
+        font-family: 'Noto Sans TC';
+        font-size: 16px;
+        border-radius: 5px;
+        outline: none;
+        border: none;
+        margin-top: 20px;
+        align-self: end;
+    }
+    
+    .footer_HomePage{
+        height: 70%;
+    }
+}

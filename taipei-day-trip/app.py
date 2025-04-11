@@ -3,27 +3,31 @@ from typing import Annotated
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.security import OAuth2PasswordBearer
+from fastapi.responses import HTMLResponse, JSONResponse
 
 import json
-from fastapi.responses import HTMLResponse, JSONResponse
 
 import mysql.connector
 from mysql.connector import pooling
 
 import jwt
-import time
 import datetime
 from passlib.context import CryptContext
 import os
 from dotenv import load_dotenv ,find_dotenv
+
+from model.booking import booking as BookingFunction
+
+
+
+
 
 # 載入 .env 檔案
 load_dotenv()
 # print(os.environ)
 # env_path = find_dotenv()
 # print(f"找到 .env 檔案: {env_path}")  # 應該會印出 .env 的路徑
-
-load_dotenv(dotenv_path="/.env")
+# load_dotenv(dotenv_path="/.env")
 
 # # 讀取環境變數
 db_name = os.getenv("db_name")
@@ -483,6 +487,25 @@ async def user_signin(request: Request, body = Body(None)):
 
 
 
+
+
+
+@app.post("/api/booking", include_in_schema=False)
+async def build_booking_fun(request: Request, Authorization: str = Header(None), body = Body(None)):
+	booking_data = BookingFunction.build_booking(Authorization, body)
+	return booking_data
+
+@app.get("/api/booking", include_in_schema=False)
+async def get_booking_info(Authorization: str = Header(None)):
+	search_booking_data = BookingFunction.booking_db_search(Authorization)
+	return {"data":search_booking_data}
+
+
+@app.delete("/api/booking", include_in_schema=False)
+async def delete_booking(Authorization: str = Header(None)):
+	result_message = BookingFunction.delete_booking_function(Authorization)
+	print(result_message)
+	return result_message
 
 
 
