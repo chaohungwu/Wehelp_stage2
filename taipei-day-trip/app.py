@@ -17,6 +17,7 @@ import os
 from dotenv import load_dotenv ,find_dotenv
 
 from model.booking import booking as BookingFunction
+from model.order import order as OrderFunction
 
 
 
@@ -475,7 +476,7 @@ async def user_signin(request: Request, body = Body(None)):
 					# print(encoded_jwt)
 					return {"token": encoded_jwt}
 				
-								#3.密碼錯誤
+			#3.密碼錯誤
 				else:
 					return JSONResponse(content={"error": True, "message": "密碼錯誤"}, status_code=400)
 
@@ -508,6 +509,26 @@ async def delete_booking(Authorization: str = Header(None)):
 	return result_message
 
 
+
+
+#連接付款、建立訂單
+@app.post("/api/orders", include_in_schema=False)
+async def build_orders_fun(request: Request, Authorization: str = Header(None), body = Body(None)):
+	order_payment_status = await OrderFunction.order_db_import(Authorization, body)
+	return order_payment_status
+
+
+#取得訂單資訊
+@app.get("/api/order/{order_num}", include_in_schema=False)
+async def get_order_info(request: Request, order_num: int, Authorization: str = Header(None)):
+	order_data_search = await OrderFunction.order_db_search(Authorization, order_num)
+	return {"data":order_data_search}
+
+
+
+@app.get("/thankyou", include_in_schema=False)
+async def thank_page(request: Request, number):
+	return FileResponse("./static/ThankPage.html", media_type="text/html")
 
 
 # Static Pages (Never Modify Code in this Block)以下是靜態文件

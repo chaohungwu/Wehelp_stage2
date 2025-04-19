@@ -59,6 +59,7 @@ async function get_booking_info(){
     });
     
     let data = await response.json();
+    // console.log(`訂單資訊：${data}`)
     return data;
     }
 

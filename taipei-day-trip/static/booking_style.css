@@ -756,7 +756,7 @@
     align-self: end;
 }
 
-.sum_booking_info_contain_BuyButt{
+#sum_booking_info_contain_BuyButt{
     width: 170px;
     height: 36px;
     color: white;
@@ -769,6 +769,21 @@
     margin-top: 20px;
     align-self: end;
 }
+
+
+/* toppay樣式 */
+.tpfield {
+    height: 40px;
+    width: 300px;
+    border: 1px solid gray;
+    margin: 5px 0;
+    padding: 5px;
+}
+
+
+
+
+
 
 
 
@@ -1085,7 +1100,12 @@
         width: auto;
         align-content: center;
     }
-    
+    .booking_contain_CreditCard_info__Content{
+        display: flex;
+        width: auto;
+        align-content: center;
+    }
+
     .booking_contain_CreditCard_info__ContentTitle{
         display: flex;
         width: auto;
@@ -1136,7 +1156,7 @@
         align-self: end;
     }
     
-    .sum_booking_info_contain_BuyButt{
+    #sum_booking_info_contain_BuyButt{
         width: 170px;
         height: 36px;
         color: white;
@@ -1153,4 +1173,20 @@
     .footer_HomePage{
         height: 70%;
     }
+
+    /* .card-number-group .card-number {
+        width: 300px;
+        height: 45px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 0;
+        overflow: hidden;
+      } */
+
+
+
+
+
+
+
 }
