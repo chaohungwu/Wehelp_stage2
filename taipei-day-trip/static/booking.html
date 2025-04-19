@@ -10,7 +10,7 @@
   <script defer src="/js/booking_function.js"> </script>
   <script defer src="/js/booking_view.js"> </script>
   <script defer src="/js/Direct_Pay.js"> </script>
-  <script defer src="/js/order_function.js"> </script>
+  <!-- <script defer src="/js/order_function.js"> </script> -->
 
 
 
@@ -112,40 +112,22 @@
   <div class="booking_contain_CreditCard">
     <div class="booking_contain_CreditCard_title">信用卡付款資訊</div>
 
-
-    <!-- <div class="booking_contain_CreditCard_info">
-      <div class="booking_contain_CreditCard_info__Content">
-        <div class="booking_contain_CreditCard_info__ContentTitle">卡片號碼：</div>
-        <div class="booking_contain_CreditCard_info__Input" id="card-number" placeholder="**** **** **** ****"></div>
+      <div class="form-group card-number-group" id="card_num_group">
+          <label for="card-number" class="control-label"></span>卡號號碼：</label>
+          <div class="form-control card-number" id="card-number_input"></div>
       </div>
 
-      <div class="booking_contain_CreditCard_info__Content">
-        <div class="booking_contain_CreditCard_info__ContentTitle">過期時間：</div>
-        <div class="booking_contain_CreditCard_info__Input" id="expiration-date" placeholder="MM / YY"></div>
-      </div>
-
-      <div class="booking_contain_CreditCard_info__Content">
-        <div class="booking_contain_CreditCard_info__ContentTitle">驗證密碼：</div>
-        <div class="booking_contain_CreditCard_info__Input" id="ccv_input" placeholder="CVV"></div>
-      </div> -->
 
 
-
-      <div class="form-group card-number-group">
-          <label for="card-number" class="control-label"><span id="cardtype"></span>卡號</label>
-          <div class="form-control card-number"></div>
-      </div>
-
-      <div class="form-group expiration-date-group">
-          <label for="expiration-date" class="control-label">卡片到期日</label>
+      <div class="form-group expiration-date-group" id="card_date_group">
+          <label for="expiration-date" class="control-label">過期時間：</label>
           <div class="form-control expiration-date" id="tappay-expiration-date"></div>
       </div>
-      <div class="form-group ccv-group">
-          <label for="ccv_input" class="control-label">卡片後三碼</label>
+      <div class="form-group ccv-group" id="card_cvv_group">
+          <label for="ccv_input" class="control-label">驗證密碼：</label>
           <div class="form-control ccv" id="cvv_input"></div>
       </div>
 
-      <!-- <button type="submit" class="btn btn-default">Pay</button> -->
 
     </div>
 

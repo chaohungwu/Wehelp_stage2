@@ -675,7 +675,7 @@
     flex-wrap: wrap;
     margin-top: 40px;
     box-sizing: border-box;
-    gap: 10px;
+    gap: 30px;
     justify-content: center;
     align-content: center;
 }
@@ -689,6 +689,7 @@
     font-weight: bold;
     margin-bottom: 20px;
     color: rgb(107,107,107);
+    gap: 30px;
 }
 
 .booking_contain_CreditCard_info{
@@ -768,23 +769,79 @@
     border: none;
     margin-top: 20px;
     align-self: end;
+    cursor:pointer;
 }
 
 
 /* toppay樣式 */
-.tpfield {
-    height: 40px;
-    width: 300px;
-    border: 1px solid gray;
-    margin: 5px 0;
-    padding: 5px;
+.control-label{
+    display: flex;
+    width: auto;
+    font-family: 'Noto Sans TC';
+    color: rgba(107, 107, 107);
+    padding-right: 20px;
+    box-sizing: border-box;
+    font-size: 18px;
 }
 
 
+#card_num_group{
+display: flex;
+align-items: center;
+}
+
+#card-number_input{
+    display: flex;
+    width: 200px;
+    height: 30px;
+    padding-top: 3px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    font-family: 'Noto Sans TC';
+    border-style: solid;
+    border-radius: 3px;
+    border-color: rgba(107, 107, 107, 0.2);
+    outline: none;
+}
 
 
+#card_date_group{
+    display: flex;
+    align-items: center;
+    }
 
+#tappay-expiration-date{
+    display: flex;
+    width: 200px;
+    height: 30px;
+    padding-top: 3px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    font-family: 'Noto Sans TC';
+    border-style: solid;
+    border-radius: 3px;
+    border-color: rgba(107, 107, 107, 0.2);
+    outline: none;
+}
 
+#card_cvv_group{
+    display: flex;
+    align-items: center;
+    }
+
+#cvv_input{
+    display: flex;
+    width: 200px;
+    height: 30px;
+    padding-top: 3px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    font-family: 'Noto Sans TC';
+    border-style: solid;
+    border-radius: 3px;
+    border-color: rgba(107, 107, 107, 0.2);
+    outline: none;
+}
 
 
 
@@ -1070,7 +1127,7 @@
         padding-left: 10px;
         padding-right: 10px;
         box-sizing: border-box;
-        gap: 10px;
+        gap: 30px;
         justify-content: center;
         align-content: center;
     }
@@ -1080,7 +1137,7 @@
         width: 100%;
         max-width: 1000px;
         font-family: 'Noto Sans TC';
-        font-size: 20px;
+        font-size: 30px;
         font-weight: bold;
         margin-bottom: 20px;
         color: rgb(107,107,107);
@@ -1168,23 +1225,13 @@
         border: none;
         margin-top: 20px;
         align-self: end;
+        cursor:pointer;
+
     }
     
     .footer_HomePage{
         height: 70%;
     }
-
-    /* .card-number-group .card-number {
-        width: 300px;
-        height: 45px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        padding: 0;
-        overflow: hidden;
-      } */
-
-
-
 
 
 

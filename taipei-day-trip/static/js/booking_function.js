@@ -81,7 +81,7 @@ async function delete_booking(){
 }
 
 
-// 3. 預定畫面按鈕功能(進入bookind頁面)
+// 3. 預定畫面按鈕功能(進入booking頁面)
 async function booking_page(){
     let response = await fetch(`/api/auth`,
         {

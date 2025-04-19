@@ -14,7 +14,7 @@ var fields = {
     ccv: {
         // element: $('.form-control.ccv')[0],
         element: document.getElementById('cvv_input'),
-        placeholder: '後三碼'
+        placeholder: 'CVV'
     }
 }
 // 選填 CCV Example
@@ -44,7 +44,7 @@ TPDirect.card.setup({
 
         // Styling ccv field
         'input.ccv_input': {
-            'font-size': '16px'
+            'font-size': '16px',
         },
 
         // Styling expiration-date field
@@ -54,17 +54,6 @@ TPDirect.card.setup({
 
         // Styling card-number field
         'input.card-number': {
-            'display': 'flex',
-            'width': '200px',
-            'height': '26px',
-            'padding-left': '5px',
-            'box-sizing': 'border-box',
-            'font-family': "'Noto Sans TC'",
-            'border-style': 'solid',
-            'border-radius': '3px',
-            'border-color': 'rgba(107, 107, 107, 0.2)',
-            'outline': 'none',
-            'align-self': 'center',
             'font-size': '16px'
           },
 
@@ -167,7 +156,10 @@ function onSubmit(event) {
 
     // 確認是否可以 getPrime
     if (tappayStatus.canGetPrime === false) {
-        alert('can not get prime')
+        alert('請輸入正確的付款資訊')
+
+
+
         return
     }
 

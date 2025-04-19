@@ -128,7 +128,6 @@ class order:
         cursor.close()
         connection.close()
 
-
         try:
             # 要存到 order table 的資料
             order_user_id = db_results[0][1]

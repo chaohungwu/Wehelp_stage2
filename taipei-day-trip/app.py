@@ -526,6 +526,7 @@ async def get_order_info(request: Request, order_num: int, Authorization: str = 
 
 
 
+
 @app.get("/thankyou", include_in_schema=False)
 async def thank_page(request: Request, number):
 	return FileResponse("./static/ThankPage.html", media_type="text/html")
