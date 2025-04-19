@@ -25,118 +25,122 @@
   </div>
   <div style="height: 45px;"></div>
 
-  <!-- 景點上半部分大框 -->
-  <div class="attraction_contain">
-    <div class="attraction_content">
-      <!-- 景點上半部分左半邊圖片 -->
-      <div class="attraction_content_left">
-        <div class="attraction_content_left_carousel">
-          <div class="attraction_content_left_carousel_img">
-            <div class="carousel">
-              <div class="container">
+  <div class="all_att_contain">
+    <div class="all_att_contain_in">
 
+      <!-- 景點上半部分大框 -->
+      <div class="attraction_contain">
+        <div class="attraction_content">
+          <!-- 景點上半部分左半邊圖片 -->
+          <div class="attraction_content_left">
+            <div class="attraction_content_left_carousel">
+              <div class="attraction_content_left_carousel_img">
+                <div class="carousel">
+                  <div class="container">
+
+                  </div>
+            
+                  <!-- 輪播按鈕 -->
+                  <div class="btnContainer">
+                    <button class="btn btn-prev" id="last_img_but"></button>
+                    <button class="btn btn-next" id="next_img_but"></button>
+                  </div>
+
+                  <!-- 輪播底部點點 -->
+                  <div class="bottomdot_group">
+                    <!-- <div class="attraction_content_left_carousel_img_bottomdot"></div>
+                    <div class="attraction_content_left_carousel_img_bottomdot"></div> -->
+                  </div>
+
+
+
+                </div>
               </div>
-        
-              <!-- 輪播按鈕 -->
-              <div class="btnContainer">
-                <button class="btn btn-prev" id="last_img_but"></button>
-                <button class="btn btn-next" id="next_img_but"></button>
-              </div>
-
-              <!-- 輪播底部點點 -->
-              <div class="bottomdot_group">
-                <!-- <div class="attraction_content_left_carousel_img_bottomdot"></div>
-                <div class="attraction_content_left_carousel_img_bottomdot"></div> -->
-              </div>
-
-
-
             </div>
           </div>
-        </div>
-      </div>
-    
+        
 
 
-      <!-- 景點上半部分右半邊景點資訊 -->
-      <div class="attraction_content_right">
-        <div class="attraction_content_right_content">
-          <div class="attraction_content_right_title">平安鐘</div>
-          <div class="attraction_content_right_info">公共藝術at忠孝復興</div>
-          <div class="attraction_content_right_booking">
-            <div class="attraction_content_right_booking_area">
-              <div class="attraction_content_right_booking_area_title">訂購導覽行程</div>
-              <div class="attraction_content_right_booking_area_text">以此景點為中心的一日行程，帶您探索城市角落故事</div>
+          <!-- 景點上半部分右半邊景點資訊 -->
+          <div class="attraction_content_right">
+            <div class="attraction_content_right_content">
+              <div class="attraction_content_right_title">平安鐘</div>
+              <div class="attraction_content_right_info">公共藝術at忠孝復興</div>
+              <div class="attraction_content_right_booking">
+                <div class="attraction_content_right_booking_area">
+                  <div class="attraction_content_right_booking_area_title">訂購導覽行程</div>
+                  <div class="attraction_content_right_booking_area_text">以此景點為中心的一日行程，帶您探索城市角落故事</div>
 
-              <div class="attraction_content_right_booking_area_info_area">
-                <div class="attraction_content_right_booking_area_info_area_date">
-                  選擇日期：
-                  <input type="date" class="date_style">
-                </div>
-
-                <div class="attraction_content_right_booking_area_info_area_time">
-                  <div class="time_text_style">選擇時間：</div>
-                  
-                  <div class="group">
-                    <div class="radio-group">
-                      <input type="radio" class="radio-input" id="1" value="2000" name="select_time" onclick="select_time_radio()" checked>
-                      <label for="1" class="radio-label" >
-                      <span class="radio-button"></span>
-                      上半天
-                      </label>
+                  <div class="attraction_content_right_booking_area_info_area">
+                    <div class="attraction_content_right_booking_area_info_area_date">
+                      選擇日期：
+                      <input type="date" class="date_style">
                     </div>
-                  
-                    <div class="radio-group">
-                      <input type="radio" class="radio-input" id="2" value="2500" name="select_time" onclick="select_time_radio()">
-                      <label for="2" class="radio-label" >
-                        <span class="radio-button"></span>
-                        下半天
-                      </label>
+
+                    <div class="attraction_content_right_booking_area_info_area_time">
+                      <div class="time_text_style">選擇時間：</div>
+                      
+                      <div class="group">
+                        <div class="radio-group">
+                          <input type="radio" class="radio-input" id="1" value="2000" name="select_time" onclick="select_time_radio()" checked>
+                          <label for="1" class="radio-label" >
+                          <span class="radio-button"></span>
+                          上半天
+                          </label>
+                        </div>
+                      
+                        <div class="radio-group">
+                          <input type="radio" class="radio-input" id="2" value="2500" name="select_time" onclick="select_time_radio()">
+                          <label for="2" class="radio-label" >
+                            <span class="radio-button"></span>
+                            下半天
+                          </label>
+                        </div>
+                      
+                      </div>
                     </div>
+                    <div class="attraction_content_right_booking_area_info_area_price">導覽費用：新台幣2000元</div>
+                  </div>
                   
+                  
+                  <div class="attraction_content_right_booking_area_but_area">
+                    <button class="attraction_content_right_booking_area_but" onclick=build_booking()>開始預約行程</button>
                   </div>
                 </div>
-                <div class="attraction_content_right_booking_area_info_area_price">導覽費用：新台幣2000元</div>
-              </div>
-              
-              
-              <div class="attraction_content_right_booking_area_but_area">
-                <button class="attraction_content_right_booking_area_but" onclick=build_booking()>開始預約行程</button>
               </div>
             </div>
           </div>
+
+            <!-- 景點下半部分大框 -->
+            <div class="hr_contain_style">
+              <hr class="hr_style"/>
+            </div>
+
+
+            <div class="attraction_contain_down">
+              <div class="attraction_contain_down_info">景點描述</div>
+
+              <div class="attraction_contain_down_address">
+                <h3 class="attraction_contain_down_address_title">景點地址：</h3>
+                <div class="attraction_contain_down_address_content">景點地址</div>
+              </div>
+
+              <div class="attraction_contain_down_transportation">
+                <h3 class="attraction_contain_down_transportation_title">交通方式：</h3>
+                <div class="attraction_contain_down_transportation_content">交通內容</div>
+              </div>
+            </div>
+        </div>
+            
+
         </div>
       </div>
-
-        <!-- 景點下半部分大框 -->
-        <div class="hr_contain_style">
-          <hr class="hr_style"/>
-        </div>
-
-
-        <div class="attraction_contain_down">
-          <div class="attraction_contain_down_info">景點描述</div>
-
-          <div class="attraction_contain_down_address">
-            <h3 class="attraction_contain_down_address_title">景點地址：</h3>
-            <div class="attraction_contain_down_address_content">景點地址</div>
-          </div>
-
-          <div class="attraction_contain_down_transportation">
-            <h3 class="attraction_contain_down_transportation_title">交通方式：</h3>
-            <div class="attraction_contain_down_transportation_content">交通內容</div>
-          </div>
-        </div>
     </div>
-        
-
-    </div>
+    
+    <footer class="footer_HomePage">
+      <p>COPYRIGHT © 2021 台北一日遊</p>
+    </footer>
   </div>
-
-  <footer class="footer_HomePage">
-    <p>COPYRIGHT © 2021 台北一日遊</p>
-  </footer>
-
 
 <script>
 

@@ -13,6 +13,7 @@ async function build_booking_view(get_booking_data){
         text_dom.textContent = "目前沒有任何待預定的行程"
         document.querySelector(".booking_contain").appendChild(text_dom)
         document.querySelector(".booking_contain").style.height="auto"
+        document.querySelector(".footer_HomePage").style.height="80vh"
 
 
     }else{

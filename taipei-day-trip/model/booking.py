@@ -131,7 +131,7 @@ class booking:
                     print(e)
 
             elif time_id=="2" and date_select!="":
-                time = "aftrenoon"
+                time = "afternoon"
                 price = 2500
                 booking_data = {
                     "attractionId":att_id,
