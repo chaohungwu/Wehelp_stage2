@@ -116,6 +116,21 @@ class order:
             # print(order_number)
 
 
+
+        # 先檢查有沒有漏填的，避免漏填的錯誤資訊搶了pooling連線
+        order_contact_name = data['order']['contact']['name']
+        order_contact_email = data['order']['contact']['email']
+        order_contact_phone = data['order']['contact']['phone']
+
+        
+        if order_contact_name=="" or order_contact_email=="" or order_contact_phone=='':
+            return JSONResponse(content={"error": True, "message": "訂單建立失敗，聯絡資訊輸入不正確"}, status_code=400)
+        else:
+            pass
+
+
+
+
         # 3. 將booking_table裡該使用者的資訊建立一分到order_table，原有的booking_table該訂單刪除
         ##建立order訂單db data
         connection = pool.get_connection()
@@ -141,10 +156,6 @@ class order:
             order_contact_phone = data['order']['contact']['phone']
             order_status = 0
 
-            if order_contact_name=="" or order_contact_email=="" or order_contact_phone=='':
-                return JSONResponse(content={"error": True, "message": "訂單建立失敗，聯絡資訊輸入不正確"}, status_code=400)
-            else:
-                pass
 
 
             add_data = (order_user_id,

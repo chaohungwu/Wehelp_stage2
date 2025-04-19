@@ -36,12 +36,22 @@ async function order_info_get() {
         
         // 時間
         order_time = document.querySelector("#order_time")
-        order_time.textContent=`${data["data"]["data"]['trip']["time"]}`
+        if(data["data"]["data"]['trip']["time"]=='morning'){
+          order_time.textContent=`早上9點到下午4點`
+        }else if(data["data"]["data"]['trip']["time"]=='afternoon'){
+          order_time.textContent=`下午2點到晚上9點`
+        }else(
+          order_time.textContent=""
+        )
+
         
         // 地點
         order_address = document.querySelector("#order_address")
         order_address.textContent=`${data["data"]["data"]['trip']["attraction"]['address']}`
     
+
+
+
 
       } catch (error) {
         window.location.href = "/";

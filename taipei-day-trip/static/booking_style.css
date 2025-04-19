@@ -357,20 +357,23 @@
 }
 
 .fill_space{
-    height: 100px;
+    height: 45px;
     
 }
 
 .footer_contain{
     display: flex;
     height: auto;
+    width: 100%;
+    margin-top: 20px;
     /* margin-bottom: -875px; */
+
 }
 
 
 .footer_HomePage{
     display: flex;
-    height: 60%;
+    height: 20vh;
     width: 100%;
     font-family: 'Noto Sans TC';
     color: white;
@@ -378,7 +381,7 @@
     justify-content: center;
     /* align-items: center; */
     /* 設定footer絕對位置在底部 */
-    position:absolute;
+    position:relative;
     bottom: 0;
 }
 
@@ -761,7 +764,8 @@
     width: 170px;
     height: 36px;
     color: white;
-    background-color: rgb(66, 134, 151);
+    /* background-color: rgb(66, 134, 151); */
+    background-color: gray;
     font-family: 'Noto Sans TC';
     font-size: 16px;
     border-radius: 5px;
@@ -770,6 +774,17 @@
     margin-top: 20px;
     align-self: end;
     cursor:pointer;
+}
+
+
+/* 錯誤樣式 */
+.error_text_dom_class{
+    width: auto;
+    height: 30px;
+    padding-left: 5px;
+    box-sizing: border-box;
+    color: rgba(255, 0, 0, 0.5);
+
 }
 
 
@@ -802,6 +817,7 @@ align-items: center;
     border-radius: 3px;
     border-color: rgba(107, 107, 107, 0.2);
     outline: none;
+
 }
 
 

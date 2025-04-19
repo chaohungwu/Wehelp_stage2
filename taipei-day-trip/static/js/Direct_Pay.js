@@ -98,12 +98,14 @@ TPDirect.card.onUpdate(function (update) {
         // submitButton.removeAttribute('disabled')
         // $('button[type="submit"]').removeAttr('disabled')
         document.querySelector("#sum_booking_info_contain_BuyButt").removeAttribute('disabled')
+        document.querySelector("#sum_booking_info_contain_BuyButt").style.backgroundColor = 'rgb(66, 134, 151)'
     } else {
         // Disable submit Button to get prime.
         // submitButton.setAttribute('disabled', true)
         // $('button[type="submit"]').attr('disabled', true)
         // document.querySelector("#sum_booking_info_contain_BuyButt").attribute('disabled', true)
         document.querySelector("#sum_booking_info_contain_BuyButt").disabled = true
+
     }
 
     // cardTypes = ['visa', 'mastercard', ...]
@@ -147,21 +149,127 @@ TPDirect.card.onUpdate(function (update) {
 // $('form').on('submit', onSubmit)
 
 let order_requset;
+function check_input(){
+    try{
+        let all_erroe_text_dom = document.querySelectorAll('.error_text_dom_class')
+        for(let i =1; i<=all_erroe_text_dom.length; i++){
+            document.querySelector('.error_text_dom_class').remove()
+        }
+    }catch{
+    }
+
+    let check_input=document.querySelector('#Name_input')
+    if(check_input.value==''){
+        check_input.style.borderStyle= 'solid'
+        check_input.style.borderColor= 'rgba(255, 0, 0, 0.5)'
+        error_text_dom = document.createElement("div")
+        error_text_dom.textContent = ' * 請填寫內容'
+        error_text_dom.className = 'error_text_dom_class'
+
+        document.querySelector('#contract_name_group').appendChild(error_text_dom)
+    }else{
+        check_input.style.borderStyle= 'solid'
+        check_input.style.borderColor= 'rgba(107, 107, 107, 0.2)'
+    }
+
+    check_input = document.querySelector('#mail_input')
+    if(check_input.value==''){
+  
+        check_input.style.borderStyle= 'solid'
+        check_input.style.borderColor= 'rgba(255, 0, 0, 0.5)'
+
+        error_text_dom = document.createElement("div")
+        error_text_dom.textContent = ' * 請填寫內容'
+        error_text_dom.className = 'error_text_dom_class'
+        document.querySelector('#contract_email_group').appendChild(error_text_dom)
+    }else{
+        check_input.style.borderStyle= 'solid'
+        check_input.style.borderColor= 'rgba(107, 107, 107, 0.2)'
+    }
+
+    check_input = document.querySelector('#phone_input')
+    if(check_input.value==''){
+ 
+        check_input.style.borderStyle= 'solid'
+        check_input.style.borderColor= 'rgba(255, 0, 0, 0.5)'
+
+        error_text_dom = document.createElement("div")
+        error_text_dom.textContent = ' * 請填寫內容'
+        error_text_dom.className = 'error_text_dom_class'
+        document.querySelector('#contract_phone_group').appendChild(error_text_dom)
+    }else{
+        check_input.style.borderStyle= 'solid'
+        check_input.style.borderColor= 'rgba(107, 107, 107, 0.2)'
+    }
+
+    // 信用卡輸入內容檢測
+    // check_input = document.querySelector('#card-number_input')
+    // if(check_input.value==undefined){
+    //     check_input.style.borderStyle= 'solid'
+    //     check_input.style.borderColor= 'rgba(255, 0, 0, 0.5)'
+
+    //     error_text_dom = document.createElement("div")
+    //     error_text_dom.textContent = ' * 請填寫內容'
+    //     error_text_dom.className = 'error_text_dom_class'
+    //     document.querySelector('#card_num_group').appendChild(error_text_dom)
+    // }else{
+    //     check_input.style.borderStyle= 'solid'
+    //     check_input.style.borderColor= 'rgba(107, 107, 107, 0.2)'
+    //     console.log(check_input.value)
+    // }
+    
+    // check_input = document.querySelector('#tappay-expiration-date')
+    // if(check_input.value==undefined){
+    //     check_input.style.borderStyle= 'solid'
+    //     check_input.style.borderColor= 'rgba(255, 0, 0, 0.5)'
+
+    //     error_text_dom = document.createElement("div")
+    //     error_text_dom.textContent = ' * 請填寫內容'
+    //     error_text_dom.className = 'error_text_dom_class'
+    //     document.querySelector('#card_date_group').appendChild(error_text_dom)
+    //     console.log(check_input.value)
+    // }else{
+    //     check_input.style.borderStyle= 'solid'
+    //     check_input.style.borderColor= 'rgba(107, 107, 107, 0.2)'
+    //     console.log(check_input.value)
+    // }
+
+    // check_input = document.querySelector('#cvv_input')
+    // if(check_input.value==undefined){
+    //     check_input.style.borderStyle= 'solid'
+    //     check_input.style.borderColor= 'rgba(255, 0, 0, 0.5)'
+
+    //     error_text_dom = document.createElement("div")
+    //     error_text_dom.textContent = ' * 請填寫內容'
+    //     error_text_dom.className = 'error_text_dom_class'
+    //     document.querySelector('#card_cvv_group').appendChild(error_text_dom)
+    // }else{
+    //     console.log(check_input.value)
+    // }
+}
+
 
 function onSubmit(event) {
-    event.preventDefault()
 
+    //先看需要填入的內容有無漏填
+    check_input()
+
+    
+
+
+    event.preventDefault()
     // 取得 TapPay Fields 的 status
     const tappayStatus = TPDirect.card.getTappayFieldsStatus()
 
     // 確認是否可以 getPrime
     if (tappayStatus.canGetPrime === false) {
-        alert('請輸入正確的付款資訊')
-
-
-
+        // alert('請輸入正確的付款資訊')
+        
         return
     }
+    
+    //讓按鈕文字轉變為 "付款中請稍後"
+    document.querySelector("#sum_booking_info_contain_BuyButt").textContent = "付款中請稍後..."
 
     // Get prime
     TPDirect.card.getPrime((result) => {
@@ -225,14 +333,24 @@ function onSubmit(event) {
 
             // console.log(order_requset)
             let data = await response.json();
-            console.log(data) //回傳到前端的資料
             
 
-            let order_num = data['data']['number']
-            window.location.href = `/thankyou?number=${order_num}` //跳轉到thankyou頁面
+            // 檢測是否有發生錯誤
+            if(data['error']==true){
+                console.log(data) //回傳到前端的資料
+                // alert(`${data['message']}`)
+
+                document.querySelector("#sum_booking_info_contain_BuyButt").textContent = "確認訂購並付款"
+
+                return
+            }else{
+                let order_num = data['data']['number']
+                window.location.href = `/thankyou?number=${order_num}` //跳轉到thankyou頁面
+                return order_requset
+            }
 
 
-            return order_requset
+
         }
 
         pay_the_order();
