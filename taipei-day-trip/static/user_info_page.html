@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台北一日遊</title>
+    <link rel="stylesheet" type="text/css" href="user_info_style.css">
+
+    <link href='https://fonts.googleapis.com/css?family=Noto Sans TC' rel='stylesheet'>
+    <script defer src="/js/singin_auth.js"> </script>
+    <script defer src="/js/user_info_function.js"> </script>
+    <script defer src="/js/booking_function.js"> </script>
+    <!-- <script defer src="/js/thankyou_page_function.js"> </script> -->
+
+    </head>
+
+
+<body class="body">
+    <div class="Navigation">
+        <div class="Navigation_Bar" >
+            <div class="Navigation_Bar Navigation_Bar__LeftText Navigation_Bar__LeftText--color" onclick=home_page()>台北一日遊</div>
+            <div class="Navigation_BarRigh">
+            <span class="Navigation_Bar__RightText Navigation_Bar__RightText--color" onclick = booking_page()>預定行程</span>
+            <!-- <span class="Navigation_Bar__RightText Navigation_Bar__RightText--color" id='user_info' onclick=signin_enter()>會員中心</span> -->
+            <span class="Navigation_Bar__RightText Navigation_Bar__RightText--color" id='singin_enter'  onclick=signin_enter()></span>
+            </div>
+        </div>
+    </div>
+
+    <div style="height: 50px;"></div>
+
+    <div class="contain">
+        <div class="user_info_contain">
+            <div class="user_info_content user_info_content--shadow">
+                <div class="user_img_cover">
+                    <!-- <div class="user_img_cover"></div> -->
+                    <!-- <img class="user_img"  onclick=change_img_table()/> -->
+                    <div class="user_img"  onclick=change_img_table()></div>
+
+                    <!-- <input type="file" id="file-uploader" accept="image/png" multiple="multiple"/> -->
+                    <!-- <img id='preview' style="max-width: 300px; max-height: 300px;">  -->
+                    <!-- <img class="user_img" src="./img/welcome.png" /> -->
+                     
+
+                </div>
+
+                <div class="user_info_card">
+                    <div class="user_info_title" id="user_name">使用者名稱：</div>
+                    <div class="user_info_title" id="user_mail">使用者信箱：</div>
+                    <div class="user_info_title" id="user_password">使用者密碼：
+                        <button class=change_password onclick=change_password()>變更密碼</button>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="user_info_contain">
+            <div class="user_order_content">
+
+                <div class="user_order_title" id="order_title">歷史預定資訊：</div>
+
+
+                
+                <!-- <div class="order_card">
+                    <div class="order_info_contain">
+                        <div class="order_info_title">預定日期：</div>
+                        <div class="order_info_title">訂單編號：</div>
+                    </div>
+                    <div class="order_img"></div>
+                </div> -->
+
+
+
+            </div>
+        </div>
+
+
+
+        <footer class="footer_HomePage_ty">
+            <p>COPYRIGHT © 2021 台北一日遊</p>
+        </footer>
+    </div>
+
+
+<script>
+//回首頁
+async function home_page(){
+  window.location.href = `/`
+}
+
+
+
+
+// 預覽照片
+function display_img(curFiles) {
+    const curFile = curFiles[0];
+    const reader = new FileReader();
+    // 這會在readAS後才執行
+    reader.onload = function (e) {
+        // console.log('file:', e.target.result); // base64
+        // document.querySelector('#preview').src = e.target.result;
+        document.querySelector('#preview').style.backgroundImage = `url("${e.target.result}")`;
+
+        console.log("upload")
+    };
+    // to data url
+    reader.readAsDataURL(curFile);
+}
+
+
+
+function blob2buffer(blob) {
+    return new Promise((resolve, reject) => {
+        var arrayBuffer;
+        var fileReader = new FileReader();
+        fileReader.onload = function (event) {
+            arrayBuffer = event.target.result;
+            resolve(arrayBuffer);
+        };
+
+        fileReader.readAsArrayBuffer(blob);
+        return arrayBuffer;
+    });
+}
+
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

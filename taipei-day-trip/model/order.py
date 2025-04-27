@@ -334,3 +334,30 @@ class order:
             return responses_data
 
 
+    async def user_order_history(Authorization):
+        #1. 登入狀態驗證(這邊要確認登入的帳號和訂單的id是一致的)
+        Authorization_splite = Authorization.split()
+        token = Authorization_splite[1]
+        try:
+            decoded_jwt = jwt.decode(token, secret_key, algorithms=[algorithm])
+            print(decoded_jwt)
+
+
+        except:
+            return JSONResponse(content={"error": True, "message": "未登入系統，拒絕存取"}, status_code=403)
+
+
+        # return decoded_jwt
+        user_id = decoded_jwt["id"]
+
+        # 2. 用使用者id查詢歷史訂單資訊
+        connection = pool.get_connection()
+        cursor = connection.cursor()
+        sql = "select * from order_table where order_user_id=%s && order_status=1;"
+        cursor.execute(sql,(user_id,))
+        db_results = cursor.fetchall()
+        cursor.close()
+        connection.close()
+
+
+        return db_results
