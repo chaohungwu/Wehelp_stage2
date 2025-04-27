@@ -7,11 +7,12 @@
   <link rel="stylesheet" type="text/css" href="style.css">
   <script defer src="/js/singin_auth.js"> </script>
   <script defer src="/js/booking_function.js"> </script>
+  <script defer src="/js/booking_function.js"> </script>
+  <!-- <script defer src="/js/loading.js"> </script> -->
 
 </head>
 
 <body class="body">
-
 
 <div class="Navigation">
   <div class="Navigation_Bar" >
@@ -76,59 +77,164 @@
     //取得輸入框資訊
     search_text = document.querySelector("#search_input").value
 
-    // 先清空現有的景點
-    let web_att_card = document.querySelectorAll('.attraction_area_box');
-    for(let n =0 ; n<web_att_card.length; n++){
-        web_att_card[n].remove()
-        };
+      // 先清空現有的景點
+      let web_att_card = document.querySelectorAll('.attraction_area_box');
+      for(let n =0 ; n<web_att_card.length; n++){
+          web_att_card[n].remove()
+          };
 
-    page_refresh()
-    keyword_update()
-    get_attraction_data(now_page,search_text)
-    }
-  
-  let right_but_maxclick_times=0
-  now_move_width = 0
-  // 捷運list_bar_but點擊
-  // 設定最大最小的position寬度
-  // 設定最右邊的點擊次數
-  function list_bar_left_but_click(){
-    //先檢視網頁寬度
-    let body_dom = document.querySelector(".body");
-    let body_dom_width = body_dom.offsetWidth;
-    console.log(body_dom_width)
+      page_refresh()
+      keyword_update()
+      get_attraction_data(now_page,search_text)
+      }
 
-    if(now_move_width<0){
-      mrt_item_dom =  document.querySelectorAll(".list_bar_inner_content_mrt");
-      now_move_width+=30
-      
-      for(i=0;i<mrt_item_dom.length;i++){
-        mrt_item_dom[i].style.left =  `${now_move_width}px` 
-      };
-    }
+
+
+let right_but_maxclick_times=0
+let now_move_width = 0
+let mrt_list_click = 0
+
+function click_right_times(){
+  mrt_list_click+=1;
+}
+function click_left_times(){
+  mrt_list_click-=1;
+}
+
+// 捷運list_bar_but點擊
+// 設定最大最小的position寬度
+// 設定最右邊的點擊次數
+function list_bar_left_but_click(){
+  let list_bar_dom = document.querySelector(".list_bar_contant");
+  let list_bar_dom_width = list_bar_dom.offsetWidth;
+  move_pixel = 70
+  now_move_width += move_pixel
+  // console.log(now_move_width)
+
+
+
+
+  if(now_move_width>=0){
+    now_move_width=0
+  }else{
+    click_left_times()
+    console.log(mrt_list_click)
+    console.log(now_move_width)
+
+    let mrt_item_dom =  document.querySelectorAll(".list_bar_inner_content_mrt");
+    for(i=0;i<mrt_item_dom.length;i++){
+      mrt_item_dom[i].style.transform = `translateX(${now_move_width}px)`;
+    };
+  }
+}
+
+
+
+function list_bar_right_but_click(){
+  console.log(mrt_list_click)
+  let list_bar_dom = document.querySelector(".list_bar_contant");
+  let list_bar_dom_width = list_bar_dom.offsetWidth;
+
+  // 如果畫面大小小於1200px的話，小於的部分需要加回來(<1152px)
+  if(list_bar_dom_width<1152){
+    max_move_pixel = -1070-(1070-list_bar_dom_width)
+  }else{
+    max_move_pixel = -1000
   }
 
-  function list_bar_right_but_click(){
-    let body_dom = document.querySelector(".body");
-    let body_dom_width = body_dom.offsetWidth;
-    // console.log(body_dom_width)
-    let max_width;
+  if(now_move_width>max_move_pixel){
 
-    if(body_dom_width<360){
-      max_width = -1600;
-    }else{
-      max_width = -670;
+    move_pixel = 70
+    now_move_width -= move_pixel
+    console.log(now_move_width)
+
+    click_right_times()
+    let mrt_item_dom =  document.querySelectorAll(".list_bar_inner_content_mrt");
+    for(i=0;i<mrt_item_dom.length;i++){
+      // mrt_item_dom[i].style.left =  `${now_move_width}px`
+      mrt_item_dom[i].style.transform = `translateX(${now_move_width}px)`;
     };
+
+  }else if(max_move_pixel>now_move_width>max_move_pixel-200){
+    let mrt_item_dom =  document.querySelectorAll(".list_bar_inner_content_mrt");
+    now_move_width = max_move_pixel
+    console.log(now_move_width)
+
+    for(i=0;i<mrt_item_dom.length;i++){
+      mrt_item_dom[i].style.transform = `translateX(${now_move_width}px)`;
+    };
+  }
+  // }else if(now_move_width==-1000){
+  //   for(i=0;i<mrt_item_dom.length;i++){
+  //     let mrt_item_dom =  document.querySelectorAll(".list_bar_inner_content_mrt");
+  //     now_move_width=0
+  //     console.log(now_move_width)
+  //     for(i=0;i<mrt_item_dom.length;i++){
+  //     mrt_item_dom[i].style.transform = `translateX(${now_move_width}px)`;
+  //     };
+  //   };
+  // }
+
+
+
+}
+
+
+
+
+
+
+  // function list_bar_left_but_click(){
+  //   //先檢視網頁寬度
+  //   let body_dom = document.querySelector(".body");
+  //   let body_dom_width = body_dom.offsetWidth;
+  //   console.log(body_dom_width)
+  //   move_pixel = body_dom_width/10
+
+  //   if(now_move_width<0){
+  //     mrt_item_dom =  document.querySelectorAll(".list_bar_inner_content_mrt");
+      
+  //     now_move_width += move_pixel
+  //     console.log(now_move_width)
+
+  //     for(i=0;i<mrt_item_dom.length;i++){
+  //       // mrt_item_dom[i].style.left =  `${now_move_width}px` 
+  //       mrt_item_dom[i].style.transform = `translateX(${now_move_width})`;
+
+  //     };
+  //   }
+  // }
+
+
+
+  // function list_bar_right_but_click(){
+  //   let body_dom = document.querySelector(".body");
+  //   let body_dom_width = body_dom.offsetWidth;
+  //   // console.log(body_dom_width)
+  //   let max_width;
+
+  //   if(body_dom_width<360){
+  //     max_width = -1600;
+  //   }else{
+  //     max_width = -670;
+  //   };
     
-    if(now_move_width > max_width){
-      mrt_item_dom =  document.querySelectorAll(".list_bar_inner_content_mrt");
-      now_move_width-=30
+  //   if(now_move_width > max_width){
+  //     mrt_item_dom =  document.querySelectorAll(".list_bar_inner_content_mrt");
+  //     now_move_width -= body_dom_width/10
 
-      for(i=0;i<mrt_item_dom.length;i++){
-        mrt_item_dom[i].style.left =  `${now_move_width}px`
-      };
-    };
-  };
+  //     for(i=0;i<mrt_item_dom.length;i++){
+  //       // mrt_item_dom[i].style.left =  `${now_move_width}px`
+  //       // mrt_item_dom[i].style.transform = `translateX(${-30 * Math.abs(now_move_width/30)}px)`;
+  //       mrt_item_dom[i].style.transform = `translateX(${now_move_width}px)`;
+
+  //     };
+  //   };
+  // };
+
+
+
+
 
   // 呼叫捷運API回傳捷運訊息
   async function get_mrt_data(){

@@ -269,14 +269,24 @@ async function signin_license_check(){
               // 將使用者名稱也存在localstorage(booking頁面使用)
               localStorage.setItem('user_name', user_info["name"]);
 
+              user_center_dom = document.createElement("div");
+              user_center_dom.textContent="會員中心"
+              user_center_dom.className="Navigation_Bar__RightText Navigation_Bar__RightText--color"
+              user_center_dom.id = "user_info"
+              user_center_dom.addEventListener('click', () => {
+                window.location.href = `/user_info?userid=${user_info['id']}`;
+              })
+
+              document.querySelector(".Navigation_BarRigh").appendChild(user_center_dom)
+              
+
+
               singin_dom = document.querySelector("#singin_enter")
               singin_dom.textContent='登出系統'
               singin_dom.addEventListener('click', () => {
                 localStorage.clear('token')
                 document.querySelector('.signin_table_background').remove()
-
                 window.location.reload();
-
                 })
             }
           

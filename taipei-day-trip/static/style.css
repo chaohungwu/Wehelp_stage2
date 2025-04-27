@@ -158,6 +158,7 @@ body {
     background-repeat:no-repeat;
     background-position: center;
     border: none;
+    cursor: pointer;
 }
 
 .list_bar_right_but{
@@ -169,6 +170,7 @@ body {
     background-repeat:no-repeat;
     background-position: center;
     border: none;
+    cursor: pointer;
 }
 
 .list_bar_contant{
@@ -211,6 +213,9 @@ body {
     /* 這邊做移動 */
     position: relative;
 
+    transition-property: transform ;
+    transition-duration: 0.7s ;
+    transition-timing-function: ease ;
 }
 
 .attraction_area{
@@ -628,6 +633,25 @@ body {
     background-color: rgb(117, 117, 117);
     justify-content: center;
     align-items: center;
+}
+
+.loading_page_contain{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+
+    transition-property: transform ;
+    transition-duration: 0.7s ;
+    transition-timing-function: ease ;
+
+    justify-content: center;
+    align-self: center;
+
+    position: fixed;
+    z-index: 1;
+    font-size: 60px;
+    color: gray;
 }
 
 
