@@ -10,18 +10,28 @@ async function userInfoView(){
         })
 
     let user_data = await response.json();
-
     console.log(user_data['data'])
-    let new_dom = document.createElement("div");
-    new_dom.textContent=user_data['data']['name']
-    document.querySelector("#user_name").appendChild(new_dom)
 
-    let new_mail_dom = document.createElement("div")
-    new_mail_dom.textContent=user_data['data']['email']
-    document.querySelector("#user_mail").appendChild(new_mail_dom)
+    if(user_data['data']!=undefined){
+        let new_dom = document.createElement("div");
+        new_dom.textContent=user_data['data']['name']
+        document.querySelector("#user_name").appendChild(new_dom)
+    
+        let new_mail_dom = document.createElement("div")
+        new_mail_dom.textContent=user_data['data']['email']
+        document.querySelector("#user_mail").appendChild(new_mail_dom)
+    
+        let user_img_dom = document.querySelector(".user_img");
+    
+        if(user_data['data']['img']!=''){
+            user_img_dom.style.backgroundImage=`url("${user_data['data']['img']}")`
+        }
+    }else{
+   window.location.href = `/`
+}
 
-    let user_img_dom = document.querySelector(".user_img");
-    user_img_dom.style.backgroundImage=`url("${user_data['data']['img']}")`
+
+
 
 
 }

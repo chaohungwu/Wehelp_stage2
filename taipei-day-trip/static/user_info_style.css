@@ -473,6 +473,7 @@ body {
 .user_order_content{
     display: flex;
     height: auto;
+    min-height: 60vh;
     width: 100%;
     flex-direction: column;
     gap: 20px;
